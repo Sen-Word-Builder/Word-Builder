@@ -15,5 +15,8 @@ public class WordBuilder {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+         System.setProperty("wordnet.database.dir", "wordnet/dict");
+        ApiFetch.main(args);
+        //MainPage.main(args);
     }
 }
