@@ -14,7 +14,12 @@ import java.sql.SQLException;
 public class DatabaseOperationsTest {
     public static void main(String args []) throws SQLException, ClassNotFoundException{
      DatabaseOperations d = new DatabaseOperations();
+        System.out.println(d.createUser("trial0", "trial0", "trial0", "trial0", "trial0"));
+        System.out.println(d.checkLogin("trial0", "trial0"));
+     
+     /*
         System.out.println(d.returnDate("trial0", "abc"));
         System.out.println(d.returnCount("trial0", "abc"));
+        * */
     }
 }
