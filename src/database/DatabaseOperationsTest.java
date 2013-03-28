@@ -16,8 +16,8 @@ public class DatabaseOperationsTest {
     public static void main(String args []) throws SQLException, ClassNotFoundException{
      DatabaseOperations d = new DatabaseOperations();
     //    System.out.println(d.createUser("trial0", "trial0", "trial0", "trial0", "trial0"));
-        System.out.println(d.checkLogin("trial0", "trial0"));
-        System.out.println(d.getRandomWord("trial0"));
+     //   System.out.println(d.checkLogin("trial0", "trial0"));
+     //   System.out.println(d.getRandomWord("trial0"));
      /*
         System.out.println(d.returnDate("trial0", "abc"));
         System.out.println(d.returnCount("trial0", "abc"));
@@ -61,6 +61,13 @@ public class DatabaseOperationsTest {
         //test storequizdata
       //d.storeQuizData("trial0", 4, 7, 8);
         //d.storeQuizData("trial0", -1, 6, 4);
+        
+        
+        //test scoreretention,depth,
+        System.out.println(d.getScoreRention("trial0"));
+        System.out.println(d.getScoreDepth("trial0"));
+        System.out.println(d.getScoreWidth("trial0"));
+        System.out.println(d.getScoreWidth("trial1"));
         
     }
 }
