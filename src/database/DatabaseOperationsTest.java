@@ -49,11 +49,18 @@ public class DatabaseOperationsTest {
         d.updateHasSearched(list);
         * */
         //System.out.println(d.createUser("trial1", "trial1", "trial1", "trial1", "trial1"));
-        System.out.println(d.recoverPassword("trial0"));
+        //System.out.println(d.recoverPassword("trial0"));
         
         
         //test showHistory
+        /*
         System.out.println(d.showHistory("trial0"));
         System.out.println(d.showHistory("trial1"));
+        * */
+        
+        //test storequizdata
+      //d.storeQuizData("trial0", 4, 7, 8);
+        //d.storeQuizData("trial0", -1, 6, 4);
+        
     }
 }

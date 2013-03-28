@@ -269,6 +269,33 @@ public class DatabaseOperations {
         return all;
     }
     
+    //checked carefully and working fine
+    public void storeQuizData(String uid,int score_ret,int score_wid,int score_dep) throws SQLException, ClassNotFoundException{
+        db_con = createConnection();
+
+        int quiz=1;
+        
+        Date date=new Date(System.currentTimeMillis());
+         ArrayList<String> all=new ArrayList<String>();
+         
+        Statement stmt = db_con.createStatement();
+   
+          ResultSet rs = stmt.executeQuery("SELECT quiz_id from quiz "
+                + "where user_id='" + uid + "'");
+      
+          while (rs.next()) {
+            quiz++;
+        }
+          if(score_ret==-1)
+          stmt.executeUpdate("insert into quiz values('"+uid+"',"+quiz+",NULL,"
+                  + score_wid+","+score_dep+",'"+date+"')");
+          else
+               stmt.executeUpdate("insert into quiz values('"+uid+"',"+quiz+","+score_ret+","
+                  + score_wid+","+score_dep+",'"+date+"')");
+          
+          db_con.close();
+    }
+    
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseOperations d = new DatabaseOperations();
         System.out.println(d.returnDate("trial0", "abc"));
