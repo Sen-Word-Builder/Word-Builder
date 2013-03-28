@@ -1,0 +1,26 @@
+//createUser("trial0")
+
+insert into  TEST.WORDS values ('apple',12);
+insert into  TEST.WORDS values ('mango',15);
+insert into  TEST.WORDS values ('banana',20);
+insert into  TEST.WORDS values ('guava',3);
+insert into  TEST.WORDS values ('computer',7);
+insert into  TEST.WORDS values ('radio',15);
+insert into  TEST.WORDS values ('dog',40);
+insert into  TEST.WORDS values ('man',52);
+
+
+insert into TEST.Has_searched values ('trial0','apple','2013-03-26','2013-03-28',3);
+insert into TEST.Has_searched values ('trial0','banana','2013-03-26','2013-03-26',1);
+insert into TEST.Has_searched values ('trial0','man','2013-03-26','2013-03-26',2);
+insert into TEST.Has_searched values ('trial0','mango','2013-03-26','2013-03-27',2);
+
+//updateHasSearched("trial0",'mango',15)
+//updateHasSearched("trial0",'guava',3)
+
+//updateHasSearched("trial0",'tree',14)
+
+//createUser("trial1")
+
+//storequizdata("trial0",4,7,8)
+//storequizdata("trial0",-1,6,4)
