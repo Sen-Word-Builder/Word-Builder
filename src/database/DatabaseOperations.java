@@ -221,6 +221,7 @@ public class DatabaseOperations {
         return count;
     }
 
+    //checked and working fine
     public ArrayList<String> getAllWordsSearched(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
@@ -229,7 +230,7 @@ public class DatabaseOperations {
         Statement stmt = db_con.createStatement();
         //     stmt.executeUpdate("set search_path to " + search_path + ";");
 
-        ResultSet rs = stmt.executeQuery("SELECT word,first_searched,last_searched,coount from has_searched "
+        ResultSet rs = stmt.executeQuery("SELECT word,first_searched,last_searched,count from has_searched "
                 + "where user_id='" + uid + "'");
 
         while (rs.next()) {
@@ -295,6 +296,7 @@ public class DatabaseOperations {
         db_con.close();
     }
 
+    //checked and working fine
     public ArrayList<Double> getScoreRention(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
@@ -331,6 +333,7 @@ public class DatabaseOperations {
         return list;
     }
 
+    //checked and working fine
      public ArrayList<Double> getScoreDepth(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
@@ -366,7 +369,9 @@ public class DatabaseOperations {
         db_con.close();
         return list;
     }
- public ArrayList<Double> getScoreWidth(String uid) throws SQLException, ClassNotFoundException {
+
+     //checked and working fine
+     public ArrayList<Double> getScoreWidth(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         Statement stmt = db_con.createStatement();
