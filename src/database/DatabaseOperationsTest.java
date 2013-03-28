@@ -48,6 +48,12 @@ public class DatabaseOperationsTest {
         
         d.updateHasSearched(list);
         * */
-        System.out.println(d.createUser("trial1", "trial1", "trial1", "trial1", "trial1"));
+        //System.out.println(d.createUser("trial1", "trial1", "trial1", "trial1", "trial1"));
+        System.out.println(d.recoverPassword("trial0"));
+        
+        
+        //test showHistory
+        System.out.println(d.showHistory("trial0"));
+        System.out.println(d.showHistory("trial1"));
     }
 }

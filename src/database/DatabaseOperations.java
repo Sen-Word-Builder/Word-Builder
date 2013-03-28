@@ -74,6 +74,27 @@ public class DatabaseOperations {
 
     }
 
+    //tested and working fine
+    public ArrayList<String> recoverPassword(String uid) throws SQLException, ClassNotFoundException{
+         db_con = createConnection();
+
+         ArrayList<String> list=new ArrayList<>();
+         
+        Statement stmt = db_con.createStatement();
+   
+        ResultSet rs = stmt.executeQuery("SELECT pswd,security_question,security_answer from user_details "
+                + "where user_id='" + uid + "'");
+        
+        while (rs.next()) {
+            list.add(rs.getString("pswd"));
+            list.add(rs.getString("security_question"));
+            list.add(rs.getString("security_answer"));
+        }
+        db_con.close();
+        
+        return list;
+    }
+    
     //checked and working
     public ArrayList<String> returnDate(String uid,String word) throws SQLException, ClassNotFoundException{
          db_con = createConnection();
@@ -229,6 +250,24 @@ public class DatabaseOperations {
         return all;
     }
     
+    //checked and working fine
+    public ArrayList<String> showHistory(String uid) throws SQLException, ClassNotFoundException{
+          db_con = createConnection();
+
+         ArrayList<String> all=new ArrayList<String>();
+         
+        Statement stmt = db_con.createStatement();
+   
+        ResultSet rs = stmt.executeQuery("SELECT word from has_searched "
+                + "where user_id='" + uid + "'");
+        
+        while (rs.next()) {
+            all.add(rs.getString("word"));
+        }
+        
+        db_con.close();
+        return all;
+    }
     
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseOperations d = new DatabaseOperations();
