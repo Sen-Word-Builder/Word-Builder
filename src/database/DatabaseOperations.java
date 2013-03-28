@@ -97,6 +97,89 @@ public class DatabaseOperations {
         
         return dates;
     }
+    //checked and working
+    public String getRandomWord(String uid) throws SQLException, ClassNotFoundException{
+        String word="";
+        int count=0;
+         db_con = createConnection();
+             Statement stmt = db_con.createStatement();
+  
+            ResultSet rs = stmt.executeQuery("SELECT * from has_searched "
+                + "where user_id='" + uid + "'");
+            
+        while (rs.next()) {
+           count++;
+        }
+        //  System.out.println("count"+count);
+          
+          if(count==0) {
+              db_con.close();
+              return null;
+          }
+          
+          int random=1+(int)(Math.random()*count);
+          
+       //   System.out.println("random"+random);
+          
+            rs = stmt.executeQuery("SELECT word from has_searched "
+                + "where user_id='" + uid + "'");
+           
+            
+            
+            int i=1;
+            while (rs.next()) {
+            if(random==i){
+                word=rs.getString("word");
+            }
+            i++;
+        }
+       //   System.out.println(word);
+            
+            db_con.close();
+      return word;
+    }
+    
+    //very carefully checked and working absolutely fine
+    public void updateHasSearched(ArrayList<String> list) throws SQLException, ClassNotFoundException{
+        String uid=list.get(0);
+        String word=list.get(1);
+        int frequency=Integer.parseInt(list.get(2));
+        int count=0;
+         db_con = createConnection();
+        
+          Statement stmt = db_con.createStatement();
+  
+          Date date=new Date(System.currentTimeMillis());
+            ResultSet rs = stmt.executeQuery("SELECT count from has_searched "
+                + "where user_id='" + uid + "' and word='"+word+"'");
+            
+            if(rs.next())
+            {
+                count=rs.getInt("count");
+                count++;
+                stmt.executeUpdate("UPDATE has_searched " + "SET count=" + count +
+                    ",last_searched='"+date+"' where user_id='"+uid+"' and word='"+word+"'");
+            
+            }
+            else{
+                count++;
+                rs=stmt.executeQuery("SELECT word,frequency from words "
+                + "where word='" + word + "'");
+                
+                if(rs.next()){
+                 stmt.executeUpdate("insert into has_searched values"
+                         + " ('"+uid+"','"+word+"','"+date+"','"+date+"',"+count+")");
+                }
+                else{
+                    stmt.executeUpdate("insert into words values('"
+                            +word+ "',"+frequency+")");
+                     stmt.executeUpdate("insert into has_searched values"
+                         + " ('"+uid+"','"+word+"','"+date+"','"+date+"',"+count+")");
+                }
+            }
+         
+         db_con.close();
+    }
     
     //checked and working
     public int returnCount(String uid,String word) throws SQLException, ClassNotFoundException{
