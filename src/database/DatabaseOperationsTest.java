@@ -69,5 +69,9 @@ public class DatabaseOperationsTest {
         System.out.println(d.getScoreWidth("trial0"));
         System.out.println(d.getScoreWidth("trial1"));
         
+        
+        //test getAllwordssearched
+        System.out.println(d.getAllWordsSearched("trial0"));
+        System.out.println(d.getAllWordsSearched("trial1"));
     }
 }
