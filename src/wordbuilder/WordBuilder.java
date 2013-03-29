@@ -22,15 +22,31 @@ public class WordBuilder {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
       //  Properties props = System.getProperties();
-    //    props.setProperty("wordnet.database.dir", "wordnet/dict"); 
-      //  System.setProperty("wordnet.database.dir","../wordnet/dict");
-       System.setProperty("wordnet.database.dir", "C:/Program Files (x86)/WordNet/2.1/dict");
+     //  props.setProperty("wordnet.database.dir", "wordnet/dict"); 
+        System.setProperty("wordnet.database.dir","wordnet/dict");
+       //System.setProperty("wordnet.database.dir", "C:/Program Files (x86)/WordNet/2.1/dict");
    //     String a = System.getProperty("user.dir");
      //   a+="/WordBuilder.jar/wordnet/dict/";
       //  System.setProperty("wordnet.database.dir", a);
-        ApiFetch.main(args);
+        //ApiFetch.main(args);
+        //ApiFetch.getMeaning(" ","help","q");
         //MainPage.main(args);
+        //ApiFetch.getHypernym("");
+        //ApiFetch.getHyponym("");
+        //MainPage.main(args);
+        
      
        
     }
+    
+    public static String getCurrentUser()
+    {
+        return currentU;
+    }
+    public static void setCurrentUser(String user)
+    {
+        currentU = user;
+    }
+    
+    private static String currentU;
 }
