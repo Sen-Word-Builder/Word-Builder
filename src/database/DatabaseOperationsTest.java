@@ -14,32 +14,33 @@ import java.util.ArrayList;
  */
 public class DatabaseOperationsTest {
     public static void main(String args []) throws SQLException, ClassNotFoundException{
-     DatabaseOperations d = new DatabaseOperations();
-    //    System.out.println(d.createUser("trial0", "trial0", "trial0", "trial0", "trial0"));
-     //   System.out.println(d.checkLogin("trial0", "trial0"));
-     //   System.out.println(d.getRandomWord("trial0"));
-     /*
-        System.out.println(d.returnDate("trial0", "abc"));
-        System.out.println(d.returnCount("trial0", "abc"));
-        * */
+     //DatabaseOperations d = new DatabaseOperations();
+       // System.out.println(d.createUser("trial0", "trial0", "trial0", "trial0", "trial0"));
+       System.out.println(DatabaseOperations.checkLogin("trial0", "trial0"));
+        System.out.println(DatabaseOperations.getRandomWord("trial0"));
+   /*  
+        System.out.println(DatabaseOperations.returnDate("trial0", "mango"));
+        System.out.println(DatabaseOperations.returnCount("trial0", "apple"));
+   */     
+        
+        /*
+        ArrayList<String> list=new ArrayList<String>();
+        list.add("trial0");
+        list.add("radio");
+        list.add("15");
+        
+        DatabaseOperations.updateHasSearched(list);
+        */
+       
         /*
         ArrayList<String> list=new ArrayList<String>();
         list.add("trial0");
         list.add("mango");
         list.add("15");
         
-        d.updateHasSearched(list);
-        * */
-       
-        /*
-        ArrayList<String> list=new ArrayList<String>();
-        list.add("trial0");
-        list.add("guava");
-        list.add("3");
+       DatabaseOperations.updateHasSearched(list);
         
-        d.updateHasSearched(list);
-        * */
-        
+        */
         /*
         ArrayList<String> list=new ArrayList<String>();
         list.add("trial0");
@@ -54,9 +55,9 @@ public class DatabaseOperationsTest {
         
         //test showHistory
         /*
-        System.out.println(d.showHistory("trial0"));
-        System.out.println(d.showHistory("trial1"));
-        * */
+        System.out.println(DatabaseOperations.showHistory("trial0"));
+        System.out.println(DatabaseOperations.showHistory("trial1"));
+        */
         
         //test storequizdata
       //d.storeQuizData("trial0", 4, 7, 8);
@@ -64,14 +65,14 @@ public class DatabaseOperationsTest {
         
         
         //test scoreretention,depth,
-        System.out.println(d.getScoreRention("trial0"));
-        System.out.println(d.getScoreDepth("trial0"));
-        System.out.println(d.getScoreWidth("trial0"));
-        System.out.println(d.getScoreWidth("trial1"));
+        System.out.println(DatabaseOperations.getScoreRention("trial0"));
+        System.out.println(DatabaseOperations.getScoreDepth("trial0"));
+        System.out.println(DatabaseOperations.getScoreWidth("trial0"));
+        System.out.println(DatabaseOperations.getScoreWidth("trial1"));
         
         
         //test getAllwordssearched
-        System.out.println(d.getAllWordsSearched("trial0"));
-        System.out.println(d.getAllWordsSearched("trial1"));
+        System.out.println(DatabaseOperations.getAllWordsSearched("trial0"));
+        System.out.println(DatabaseOperations.getAllWordsSearched("trial1"));
     }
 }
