@@ -4,9 +4,18 @@
  */
 package wordbuilder;
 
+import database.DatabaseOperations;
+import edu.smu.tspell.wordnet.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
- * @author kantri
+ * @author chandra
  */
 public class MainPage extends javax.swing.JFrame {
 
@@ -27,41 +36,28 @@ public class MainPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
-        jToggleButton7 = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jScrollBar1 = new javax.swing.JScrollBar();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jToggleButton9 = new javax.swing.JToggleButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jScrollBar2 = new javax.swing.JScrollBar();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
 
         jToggleButton3.setText("jToggleButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jToggleButton1.setText("Option");
-
-        jToggleButton2.setText("Quiz");
-
-        jToggleButton4.setText("Anaylsis");
-
-        jToggleButton5.setText("Help");
-
-        jToggleButton6.setText("Sign up");
-
-        jToggleButton7.setText("Sign in");
 
         jLabel1.setText("Query");
 
@@ -73,12 +69,6 @@ public class MainPage extends javax.swing.JFrame {
 
         jLabel2.setText("Relatives");
 
-        jToggleButton9.setText("Synonyms");
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
         jButton1.setText("Search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,59 +76,68 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Option");
+
+        jButton3.setText("Quiz");
+
+        jButton4.setText("Analysis");
+
+        jButton5.setText("Help");
+
+        jLabel3.setText("Hello User");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane3.setViewportView(jTextArea2);
+
+        jTabbedPane1.addTab("Synonyms", jScrollPane3);
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane4.setViewportView(jTextArea3);
+
+        jTabbedPane1.addTab("Antonyms", jScrollPane4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToggleButton1)
+                .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton5)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton6))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
             .addComponent(jSeparator1)
             .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jToggleButton9)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(jButton1)
-                        .addGap(17, 17, 17))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2)
-                    .addComponent(jToggleButton4)
-                    .addComponent(jToggleButton5)
-                    .addComponent(jToggleButton6)
-                    .addComponent(jToggleButton7))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,19 +146,13 @@ public class MainPage extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton9)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -167,9 +160,213 @@ public class MainPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       String toSearch = jTextField1.getText();
-       
+        String toSearch = jTextField1.getText();
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setText("");
+        jTextArea2.setText("");
+        jTextArea3.setText("");
+
+
+        if (!(toSearch.equals("") | toSearch.equals(" "))) {
+            try {
+                renderText(toSearch);
+            } catch (SQLException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     *
+     * @param inputword Word whose Meanings are rendered on GUI
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    private void renderText(String inputword) throws SQLException, ClassNotFoundException {
+        WordNetDatabase database = WordNetDatabase.getFileInstance();
+        Synset[] synset = database.getSynsets(inputword);
+        Synset[] synsetNoun = database.getSynsets(inputword, SynsetType.NOUN);
+        Synset[] synsetAdj = database.getSynsets(inputword, SynsetType.ADJECTIVE);
+        Synset[] synsetAdjsat = database.getSynsets(inputword, SynsetType.ADJECTIVE_SATELLITE);
+        Synset[] synsetAdv = database.getSynsets(inputword, SynsetType.ADVERB);
+        Synset[] synsetVerb = database.getSynsets(inputword, SynsetType.VERB);
+        boolean isValidword = false;
+        int y = 0;
+        ArrayList<String> testcompare = new ArrayList();
+        ArrayList<String> anticompare = new ArrayList();
+
+        if (synsetNoun.length > 0) {
+            isValidword = true;
+            jTextArea1.append("  " + inputword + " ~ NOUN \n \n");
+            for (int i = 0; i < synsetNoun.length; i++) {
+                y = i + 1;
+                jTextArea1.append(" " + y + ". " + synsetNoun[i].getDefinition() + "\n \n");
+                String[] wordForms = synsetNoun[i].getWordForms();
+
+                for (int j = 0; j < wordForms.length; j++) {
+
+                    if (!wordForms[j].equals(inputword)) {
+                        if (!testcompare.contains(wordForms[j])) {
+                            jTextArea2.append(wordForms[j] + "\n \n");
+                            testcompare.add(wordForms[j]);
+                        }
+                    }
+                }
+
+
+                WordSense[] antiwordForms = synsetNoun[i].getAntonyms(inputword);
+                for (int k = 0; k < antiwordForms.length; k++) {
+                    
+                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                        anticompare.add(antiwordForms[k].getWordForm());
+
+                    }
+
+
+
+                }
+            }
+        }
+        if (synsetAdj.length > 0) {
+            isValidword = true;
+            jTextArea1.append("  " + inputword + " ~ ADJECTIVE \n \n");
+            for (int i = 0; i < synsetAdj.length; i++) {
+                y = i + 1;
+
+                jTextArea1.append(" " + y + ". " + synsetAdj[i].getDefinition() + "\n \n");
+                String[] wordForms = synsetAdj[i].getWordForms();
+                for (int j = 0; j < wordForms.length; j++) {
+                    if (!wordForms[j].equals(inputword)) {
+                        if (!testcompare.contains(wordForms[j])) {
+                            jTextArea2.append(wordForms[j] + "\n \n");
+                            testcompare.add(wordForms[j]);
+                        }
+                    }
+
+                }
+
+                WordSense[] antiwordForms = synsetAdj[i].getAntonyms(inputword);
+                for (int k = 0; k < antiwordForms.length; k++) {
+                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                        anticompare.add(antiwordForms[k].getWordForm());
+
+                    }
+                }
+
+
+            }
+
+            if (synsetAdjsat.length > 0) {
+                for (int i = 0; i < synsetAdjsat.length; i++) {
+                    y++;
+                    jTextArea1.append(" " + y + ". " + synsetAdjsat[i].getDefinition() + "\n \n");
+                    String[] wordForms = synsetAdjsat[i].getWordForms();
+                    for (int j = 0; j < wordForms.length; j++) {
+                        if (!wordForms[j].equals(inputword)) {
+                            if (!testcompare.contains(wordForms[j])) {
+                                jTextArea2.append(wordForms[j] + "\n \n");
+                                testcompare.add(wordForms[j]);
+                            }
+                        }
+
+                    }
+
+                    WordSense[] antiwordForms = synsetAdjsat[i].getAntonyms(inputword);
+                    for (int k = 0; k < antiwordForms.length; k++) {
+                        if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                            jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                            anticompare.add(antiwordForms[k].getWordForm());
+
+                        }
+                    }
+
+
+
+                }
+            }
+        }
+        if (synsetVerb.length > 0) {
+            isValidword = true;
+            jTextArea1.append("  " + inputword + " ~ VERB \n \n");
+            for (int i = 0; i < synsetVerb.length; i++) {
+                y = i + 1;
+                jTextArea1.append(" " + y + ". " + synsetVerb[i].getDefinition() + "\n \n");
+                String[] wordForms = synsetVerb[i].getWordForms();
+                for (int j = 0; j < wordForms.length; j++) {
+                    if (!wordForms[j].equals(inputword)) {
+                        if (!testcompare.contains(wordForms[j])) {
+                            jTextArea2.append(wordForms[j] + "\n \n");
+                            testcompare.add(wordForms[j]);
+                        }
+                    }
+
+                }
+
+                WordSense[] antiwordForms = synsetVerb[i].getAntonyms(inputword);
+                for (int k = 0; k < antiwordForms.length; k++) {
+                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                        anticompare.add(antiwordForms[k].getWordForm());
+
+                    }
+                }
+
+
+            }
+
+        }
+        if (synsetAdv.length > 0) {
+            isValidword = true;
+            jTextArea1.append("  " + inputword + " ~ ADVERB \n \n");
+            for (int i = 0; i < synsetAdv.length; i++) {
+                y = i + 1;
+                jTextArea1.append(" " + y + ". " + synsetAdv[i].getDefinition() + "\n \n");
+                String[] wordForms = synsetAdv[i].getWordForms();
+                for (int j = 0; j < wordForms.length; j++) {
+                    if (!wordForms[j].equals(inputword)) {
+                        if (!testcompare.contains(wordForms[j])) {
+                            jTextArea2.append(wordForms[j] + "\n \n");
+                            testcompare.add(wordForms[j]);
+                        }
+                    }
+
+                }
+
+                WordSense[] antiwordForms = synsetAdv[i].getAntonyms(inputword);
+                for (int k = 0; k < antiwordForms.length; k++) {
+                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                        anticompare.add(antiwordForms[k].getWordForm());
+
+                    }
+                }
+
+
+            }
+        }
+
+        if (isValidword) {
+
+            if (WordBuilder.getCurrentUser() != null) {
+                ArrayList<String> alsenddata = new ArrayList();
+                alsenddata.add(WordBuilder.getCurrentUser());
+                alsenddata.add(inputword);
+                alsenddata.add(String.valueOf(synset[ApiFetch.getMaxFrequency(inputword)].getTagCount(inputword)));
+                DatabaseOperations.updateHasSearched(alsenddata);
+            }
+        } else {
+            jTextArea1.setText(" Sorry, queried input does not match the database");
+        }
+
+
+    }
 
     /**
      * @param args the command line arguments
@@ -197,7 +394,6 @@ public class MainPage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -207,24 +403,23 @@ public class MainPage extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JScrollBar jScrollBar2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton7;
-    private javax.swing.JToggleButton jToggleButton9;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ package wordbuilder;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.TreeSet;
@@ -19,7 +20,7 @@ public class WordBuilder {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         // TODO code application logic here
       //  Properties props = System.getProperties();
      //  props.setProperty("wordnet.database.dir", "wordnet/dict"); 
@@ -33,7 +34,8 @@ public class WordBuilder {
         //MainPage.main(args);
         //ApiFetch.getHypernym("");
         //ApiFetch.getHyponym("");
-        //MainPage.main(args);
+        MainPage.main(args);
+        
         
      
        
