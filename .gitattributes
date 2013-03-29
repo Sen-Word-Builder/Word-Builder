@@ -1,2 +1,5 @@
 wordnet/dict/* eol=lf
 wordnet/dict/dbfiles/* eol=lf
+src/wordbuilder/Quiz.form eol=lf
+src/wordbuilder/Quiz.java eol=lf
+src/wordbuilder/MainPage.form eol=lf
