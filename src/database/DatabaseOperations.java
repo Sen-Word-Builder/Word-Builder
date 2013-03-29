@@ -23,7 +23,7 @@ import java.util.Properties;
  */
 public class DatabaseOperations {
 
-    protected Connection db_con;
+    protected static Connection db_con;
     /*    private String driver = "org.postgresql.Driver";
      private String db_url = "jdbc:postgresql://10.100.71.21/";
      private String db_user = "201001010";
@@ -32,7 +32,7 @@ public class DatabaseOperations {
      */
     //checked and working
 
-    public boolean createUser(String name, String uid, String pass, String ques, String answer) throws SQLException, ClassNotFoundException {
+    public static  boolean createUser(String name, String uid, String pass, String ques, String answer) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
         //   System.out.println(db_con);
         Statement stmt = db_con.createStatement();
@@ -56,7 +56,7 @@ public class DatabaseOperations {
     }
 
     //checked and working
-    public boolean checkLogin(String uid, String pswd) throws SQLException, ClassNotFoundException {
+    public static boolean checkLogin(String uid, String pswd) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         Statement stmt = db_con.createStatement();
@@ -75,7 +75,7 @@ public class DatabaseOperations {
     }
 
     //tested and working fine
-    public ArrayList<String> recoverPassword(String uid) throws SQLException, ClassNotFoundException {
+    public static ArrayList<String> recoverPassword(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         ArrayList<String> list = new ArrayList<>();
@@ -96,7 +96,7 @@ public class DatabaseOperations {
     }
 
     //checked and working
-    public ArrayList<String> returnDate(String uid, String word) throws SQLException, ClassNotFoundException {
+    public static ArrayList<String> returnDate(String uid, String word) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         ArrayList<String> dates = new ArrayList<String>();
@@ -120,7 +120,7 @@ public class DatabaseOperations {
     }
     //checked and working
 
-    public String getRandomWord(String uid) throws SQLException, ClassNotFoundException {
+    public static String getRandomWord(String uid) throws SQLException, ClassNotFoundException {
         String word = "";
         int count = 0;
         db_con = createConnection();
@@ -162,7 +162,7 @@ public class DatabaseOperations {
     }
 
     //very carefully checked and working absolutely fine
-    public void updateHasSearched(ArrayList<String> list) throws SQLException, ClassNotFoundException {
+    public static void updateHasSearched(ArrayList<String> list) throws SQLException, ClassNotFoundException {
         String uid = list.get(0);
         String word = list.get(1);
         int frequency = Integer.parseInt(list.get(2));
@@ -201,7 +201,7 @@ public class DatabaseOperations {
     }
 
     //checked and working
-    public int returnCount(String uid, String word) throws SQLException, ClassNotFoundException {
+    public static int returnCount(String uid, String word) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         int count = 0;
@@ -222,7 +222,7 @@ public class DatabaseOperations {
     }
 
     //checked and working fine
-    public ArrayList<String> getAllWordsSearched(String uid) throws SQLException, ClassNotFoundException {
+    public static ArrayList<String> getAllWordsSearched(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         ArrayList<String> all = new ArrayList<String>();
@@ -250,7 +250,7 @@ public class DatabaseOperations {
     }
 
     //checked and working fine
-    public ArrayList<String> showHistory(String uid) throws SQLException, ClassNotFoundException {
+    public static ArrayList<String> showHistory(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         ArrayList<String> all = new ArrayList<String>();
@@ -269,7 +269,7 @@ public class DatabaseOperations {
     }
 
     //checked carefully and working fine
-    public void storeQuizData(String uid, int score_ret, int score_wid, int score_dep) throws SQLException, ClassNotFoundException {
+    public static void storeQuizData(String uid, int score_ret, int score_wid, int score_dep) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         int quiz = 1;
@@ -297,7 +297,7 @@ public class DatabaseOperations {
     }
 
     //checked and working fine
-    public ArrayList<Double> getScoreRention(String uid) throws SQLException, ClassNotFoundException {
+    public static ArrayList<Double> getScoreRention(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         Statement stmt = db_con.createStatement();
@@ -334,7 +334,7 @@ public class DatabaseOperations {
     }
 
     //checked and working fine
-     public ArrayList<Double> getScoreDepth(String uid) throws SQLException, ClassNotFoundException {
+     public static ArrayList<Double> getScoreDepth(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         Statement stmt = db_con.createStatement();
@@ -371,7 +371,7 @@ public class DatabaseOperations {
     }
 
      //checked and working fine
-     public ArrayList<Double> getScoreWidth(String uid) throws SQLException, ClassNotFoundException {
+     public static ArrayList<Double> getScoreWidth(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();
 
         Statement stmt = db_con.createStatement();
@@ -413,7 +413,7 @@ public class DatabaseOperations {
         System.out.println(d.returnCount("trial0", "abc"));
     }
 
-    private Connection createConnection() throws SQLException, ClassNotFoundException {
+    private static Connection createConnection() throws SQLException, ClassNotFoundException {
         //   Class.forName(driver);
         // Connection con = DriverManager.getConnection(db_url, db_user, db_pwd);
         // Statement stmt_search_path = db_con.createStatement();
