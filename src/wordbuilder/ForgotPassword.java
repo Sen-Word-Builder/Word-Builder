@@ -4,6 +4,13 @@
  */
 package wordbuilder;
 
+import database.DatabaseOperations;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mohit
@@ -40,6 +47,13 @@ public class ForgotPassword extends javax.swing.JFrame {
 
         jLabel1.setText("username");
 
+        username.setToolTipText("min 2 chars max 15");
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+
         enter.setText("Enter");
         enter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +64,8 @@ public class ForgotPassword extends javax.swing.JFrame {
         jLabel2.setText("Security Question");
 
         jLabel3.setText("Security Answer");
+
+        answer.setToolTipText("min 2 chars 20 max");
 
         check.setText("Check");
         check.addActionListener(new java.awt.event.ActionListener() {
@@ -75,12 +91,12 @@ public class ForgotPassword extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(username)
-                            .addComponent(answer)
-                            .addComponent(questionlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                            .addComponent(questionlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(answer))))
+                .addGap(26, 26, 26)
                 .addComponent(enter)
-                .addGap(37, 37, 37))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,19 +116,68 @@ public class ForgotPassword extends javax.swing.JFrame {
                     .addComponent(answer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(check)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
+
+        jLabel2.setVisible(false);
+        jLabel3.setVisible(false);
+        answer.setVisible(false);
+        check.setVisible(false);
+        questionlabel.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
         // TODO add your handling code here:
+        String username=this.username.getText();
+        boolean cond1=true;
+        
+      if(username.length()>=2 && username.length()<=15)
+        { 
+          try {
+              cond1=true;
+              DatabaseOperations d= new DatabaseOperations();
+              ArrayList<String> list=d.recoverPassword(username);
+              String pass=list.get(0);
+              String ques=list.get(1);
+              String ans=list.get(2);
+              if(pass.length()>=2 && ques.length()>=2 && ans.length()>=2){
+                  
+        jLabel2.setVisible(true);
+        answer.setVisible(true);
+        jLabel3.setVisible(true);
+        questionlabel.setText(ques);
+        questionlabel.setVisible(true);
+        check.setVisible(true);
+              }
+              
+          } catch (SQLException ex) {
+              Logger.getLogger(ForgotPassword.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (ClassNotFoundException ex) {
+              Logger.getLogger(ForgotPassword.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }else{
+            cond1=false;
+            JOptionPane.showMessageDialog(this, "Check Username Character Length", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+      
+      /*
+        jLabel2.setVisible(true);
+        answer.setVisible(true);
+        jLabel3.setVisible(true);
+        questionlabel.setVisible(true);
+        * */
     }//GEN-LAST:event_enterActionPerformed
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_checkActionPerformed
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
 
     /**
      * @param args the command line arguments
