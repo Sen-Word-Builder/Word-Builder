@@ -74,6 +74,27 @@ public class DatabaseOperations {
 
     }
 
+    //tested and working fine
+    public ArrayList<String> recoverPassword(String uid) throws SQLException, ClassNotFoundException{
+         db_con = createConnection();
+
+         ArrayList<String> list=new ArrayList<>();
+         
+        Statement stmt = db_con.createStatement();
+   
+        ResultSet rs = stmt.executeQuery("SELECT pswd,security_question,security_answer from user_details "
+                + "where user_id='" + uid + "'");
+        
+        while (rs.next()) {
+            list.add(rs.getString("pswd"));
+            list.add(rs.getString("security_question"));
+            list.add(rs.getString("security_answer"));
+        }
+        db_con.close();
+        
+        return list;
+    }
+    
     //checked and working
     public ArrayList<String> returnDate(String uid,String word) throws SQLException, ClassNotFoundException{
          db_con = createConnection();
@@ -96,6 +117,89 @@ public class DatabaseOperations {
         db_con.close();
         
         return dates;
+    }
+    //checked and working
+    public String getRandomWord(String uid) throws SQLException, ClassNotFoundException{
+        String word="";
+        int count=0;
+         db_con = createConnection();
+             Statement stmt = db_con.createStatement();
+  
+            ResultSet rs = stmt.executeQuery("SELECT * from has_searched "
+                + "where user_id='" + uid + "'");
+            
+        while (rs.next()) {
+           count++;
+        }
+        //  System.out.println("count"+count);
+          
+          if(count==0) {
+              db_con.close();
+              return null;
+          }
+          
+          int random=1+(int)(Math.random()*count);
+          
+       //   System.out.println("random"+random);
+          
+            rs = stmt.executeQuery("SELECT word from has_searched "
+                + "where user_id='" + uid + "'");
+           
+            
+            
+            int i=1;
+            while (rs.next()) {
+            if(random==i){
+                word=rs.getString("word");
+            }
+            i++;
+        }
+       //   System.out.println(word);
+            
+            db_con.close();
+      return word;
+    }
+    
+    //very carefully checked and working absolutely fine
+    public void updateHasSearched(ArrayList<String> list) throws SQLException, ClassNotFoundException{
+        String uid=list.get(0);
+        String word=list.get(1);
+        int frequency=Integer.parseInt(list.get(2));
+        int count=0;
+         db_con = createConnection();
+        
+          Statement stmt = db_con.createStatement();
+  
+          Date date=new Date(System.currentTimeMillis());
+            ResultSet rs = stmt.executeQuery("SELECT count from has_searched "
+                + "where user_id='" + uid + "' and word='"+word+"'");
+            
+            if(rs.next())
+            {
+                count=rs.getInt("count");
+                count++;
+                stmt.executeUpdate("UPDATE has_searched " + "SET count=" + count +
+                    ",last_searched='"+date+"' where user_id='"+uid+"' and word='"+word+"'");
+            
+            }
+            else{
+                count++;
+                rs=stmt.executeQuery("SELECT word,frequency from words "
+                + "where word='" + word + "'");
+                
+                if(rs.next()){
+                 stmt.executeUpdate("insert into has_searched values"
+                         + " ('"+uid+"','"+word+"','"+date+"','"+date+"',"+count+")");
+                }
+                else{
+                    stmt.executeUpdate("insert into words values('"
+                            +word+ "',"+frequency+")");
+                     stmt.executeUpdate("insert into has_searched values"
+                         + " ('"+uid+"','"+word+"','"+date+"','"+date+"',"+count+")");
+                }
+            }
+         
+         db_con.close();
     }
     
     //checked and working
@@ -146,6 +250,51 @@ public class DatabaseOperations {
         return all;
     }
     
+    //checked and working fine
+    public ArrayList<String> showHistory(String uid) throws SQLException, ClassNotFoundException{
+          db_con = createConnection();
+
+         ArrayList<String> all=new ArrayList<String>();
+         
+        Statement stmt = db_con.createStatement();
+   
+        ResultSet rs = stmt.executeQuery("SELECT word from has_searched "
+                + "where user_id='" + uid + "'");
+        
+        while (rs.next()) {
+            all.add(rs.getString("word"));
+        }
+        
+        db_con.close();
+        return all;
+    }
+    
+    //checked carefully and working fine
+    public void storeQuizData(String uid,int score_ret,int score_wid,int score_dep) throws SQLException, ClassNotFoundException{
+        db_con = createConnection();
+
+        int quiz=1;
+        
+        Date date=new Date(System.currentTimeMillis());
+         ArrayList<String> all=new ArrayList<String>();
+         
+        Statement stmt = db_con.createStatement();
+   
+          ResultSet rs = stmt.executeQuery("SELECT quiz_id from quiz "
+                + "where user_id='" + uid + "'");
+      
+          while (rs.next()) {
+            quiz++;
+        }
+          if(score_ret==-1)
+          stmt.executeUpdate("insert into quiz values('"+uid+"',"+quiz+",NULL,"
+                  + score_wid+","+score_dep+",'"+date+"')");
+          else
+               stmt.executeUpdate("insert into quiz values('"+uid+"',"+quiz+","+score_ret+","
+                  + score_wid+","+score_dep+",'"+date+"')");
+          
+          db_con.close();
+    }
     
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseOperations d = new DatabaseOperations();

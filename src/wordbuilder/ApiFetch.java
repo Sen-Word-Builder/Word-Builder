@@ -183,8 +183,18 @@ public class ApiFetch {
             for (int j = 0; j < wordForms.length; j++) {
                 al1.add(wordForms[j]);
             }
-
+            
+            if (why.equals("s"))                                        //Update make static
+             {
+             ArrayList<String> senddata = new ArrayList();
+             senddata.add(uid);
+             senddata.add(word);
+             senddata.add(String.valueOf(frequency[index]));
+             System.out.println("hello"+ senddata.get(2));
+             
+             }
         }
+         
 
         return al1;
 
