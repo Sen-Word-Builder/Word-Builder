@@ -29,11 +29,24 @@ public class WordBuilder {
      //   a+="/WordBuilder.jar/wordnet/dict/";
       //  System.setProperty("wordnet.database.dir", a);
         //ApiFetch.main(args);
-       // ApiFetch.getMeaning("help");
+        //ApiFetch.getMeaning(" ","help","q");
         //MainPage.main(args);
         //ApiFetch.getHypernym("");
         //ApiFetch.getHyponym("");
+        //MainPage.main(args);
+        
      
        
     }
+    
+    public static String getCurrentUser()
+    {
+        return currentU;
+    }
+    public static void setCurrentUser(String user)
+    {
+        currentU = user;
+    }
+    
+    private static String currentU;
 }
