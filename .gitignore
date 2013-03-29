@@ -7,7 +7,7 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 derby.log
-
+sendb/
 # Class Files #
 *.class
 
