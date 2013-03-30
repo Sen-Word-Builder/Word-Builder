@@ -249,6 +249,19 @@ public class DatabaseOperations {
         return all;
     }
 
+    public static String getJoinDate(String uid) throws SQLException, ClassNotFoundException{
+         db_con = createConnection();
+         String date="";
+          Statement stmt = db_con.createStatement();
+           ResultSet rs = stmt.executeQuery("SELECT DOJ from user_details "
+                + "where user_id='" + uid + "'");
+           while (rs.next()) {
+            date=rs.getString("doj");
+        }
+           db_con.close();
+           return date;
+    }
+    
     //checked and working fine
     public static ArrayList<String> showHistory(String uid) throws SQLException, ClassNotFoundException {
         db_con = createConnection();

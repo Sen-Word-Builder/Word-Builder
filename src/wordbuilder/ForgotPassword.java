@@ -24,6 +24,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         initComponents();
     }
 
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,18 +131,23 @@ public class ForgotPassword extends javax.swing.JFrame {
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
         // TODO add your handling code here:
-        String username=this.username.getText();
+       //  DatabaseOperations d= new DatabaseOperations();
+              ArrayList<String> list=new ArrayList<>();
+              String pass,ques,ans,answ;
+        String user=this.username.getText();
+        
         boolean cond1=true;
         
-      if(username.length()>=2 && username.length()<=15)
+        boolean  cond2=false;
+        
+      if(user.length()>=2 && user.length()<=15)
         { 
           try {
               cond1=true;
-              DatabaseOperations d= new DatabaseOperations();
-              ArrayList<String> list=d.recoverPassword(username);
-              String pass=list.get(0);
-              String ques=list.get(1);
-              String ans=list.get(2);
+               list=DatabaseOperations.recoverPassword(user);
+               pass=list.get(0);
+               ques=list.get(1);
+               ans=list.get(2);
               if(pass.length()>=2 && ques.length()>=2 && ans.length()>=2){
                   
         jLabel2.setVisible(true);
@@ -150,6 +156,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         questionlabel.setText(ques);
         questionlabel.setVisible(true);
         check.setVisible(true);
+        this.username.setEditable(false);
               }
               
           } catch (SQLException ex) {
@@ -161,7 +168,9 @@ public class ForgotPassword extends javax.swing.JFrame {
             cond1=false;
             JOptionPane.showMessageDialog(this, "Check Username Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
       
+        
       /*
         jLabel2.setVisible(true);
         answer.setVisible(true);
@@ -172,7 +181,32 @@ public class ForgotPassword extends javax.swing.JFrame {
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
-      
+          ArrayList<String> list=new ArrayList<>();
+              String pass,ques,ans,answ;
+        
+     //   DatabaseOperations d=new DatabaseOperations();
+                System.out.println("check");
+                boolean  cond2=false;
+                String user;
+                user=this.username.getText();
+                try {
+                    answ=this.answer.getText();
+                     list=DatabaseOperations.recoverPassword(user);
+                   pass=list.get(0);
+                   ques=list.get(1);
+                   ans=list.get(2);
+                  
+                    if(answ.equals(ans)){
+                        cond2=true;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ForgotPassword.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ForgotPassword.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            if(cond2){
+                System.out.println("Lets go forward");
+            }
     }//GEN-LAST:event_checkActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed

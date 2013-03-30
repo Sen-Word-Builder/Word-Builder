@@ -74,5 +74,9 @@ public class DatabaseOperationsTest {
         //test getAllwordssearched
         System.out.println(DatabaseOperations.getAllWordsSearched("trial0"));
         System.out.println(DatabaseOperations.getAllWordsSearched("trial1"));
+        
+        //test returnJoinDate
+        System.out.println(DatabaseOperations.getJoinDate("trial0"));
+        System.out.println(DatabaseOperations.getJoinDate("abcd"));
     }
 }
