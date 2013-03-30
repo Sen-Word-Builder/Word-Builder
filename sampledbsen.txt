@@ -24,3 +24,7 @@ insert into TEST.Has_searched values ('trial0','mango','2013-03-26','2013-03-27'
 
 //storequizdata("trial0",4,7,8)
 //storequizdata("trial0",-1,6,4)
+
+//updatehassearched("trial0","radio",15)
+
+//updatehassearched("trial0","mango",15)

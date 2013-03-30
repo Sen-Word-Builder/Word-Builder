@@ -4,6 +4,10 @@
  */
 package wordbuilder;
 
+import database.DatabaseOperations;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -150,10 +154,10 @@ public class Signup extends javax.swing.JFrame {
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         // TODO add your handling code here:
         String name=this.name.getText();
-        String username=this.username.getText();
-        String password=this.password.getText();
-        String question=this.question.getText();
-        String answer=this.answer.getText();
+        String user=this.username.getText();
+        String pass=this.password.getText();
+        String ques=this.question.getText();
+        String ans=this.answer.getText();
         
         boolean cond1=true;
         boolean cond2=true;
@@ -161,6 +165,7 @@ public class Signup extends javax.swing.JFrame {
         boolean cond4=true;
         boolean cond5=true;
 
+        boolean cond=false;
         if(name.length()>=2 && name.length()<=30)
         { 
             cond1=true;
@@ -168,28 +173,28 @@ public class Signup extends javax.swing.JFrame {
             cond1=false;
             JOptionPane.showMessageDialog(this, "Check Name Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(username.length()>=2 && username.length()<=15)
+        if(user.length()>=2 && user.length()<=15)
         { 
             cond2=true;
         }else{
             cond2=false;
             JOptionPane.showMessageDialog(this, "Check Username Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(password.length()>=2 && password.length()<=15)
+        if(pass.length()>=2 && pass.length()<=15)
         { 
             cond3=true;
         }else{
             cond3=false;
             JOptionPane.showMessageDialog(this, "Check Password Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(question.length()>=2 && question.length()<=30)
+        if(ques.length()>=2 && ques.length()<=30)
         { 
             cond4=true;
         }else{
             cond4=false;
             JOptionPane.showMessageDialog(this, "Check Question Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(answer.length()>=2 && username.length()<=20)
+        if(ans.length()>=2 && user.length()<=20)
         { 
             cond5=true;
         }else{
@@ -198,7 +203,16 @@ public class Signup extends javax.swing.JFrame {
         }
         
         if(cond1 && cond2 && cond3 && cond4 && cond5){
-            
+            try {
+                cond=DatabaseOperations.createUser(name, user, pass, ques, ans);
+            } catch (SQLException ex) {
+                Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(cond==false){
+                JOptionPane.showMessageDialog(this, "Username already exists","Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_createActionPerformed
 

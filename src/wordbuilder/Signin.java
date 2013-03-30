@@ -4,6 +4,11 @@
  */
 package wordbuilder;
 
+import database.DatabaseOperations;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -62,6 +67,11 @@ public class Signin extends javax.swing.JFrame {
         });
 
         create.setText("Create");
+        create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,34 +125,20 @@ public class Signin extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean cond1=true;
         boolean cond2=true;
+        boolean cond=false;
+        ArrayList<String> list;
         
-        
-        String username=this.username.getText();
-        String password=this.password.getText();
-       /*
-        if(username.length()>=2 && username.length()<=15)
-        { 
-            cond=true;
-        }else{
-            cond=false;
-            JOptionPane.showMessageDialog(this, "Check Username Character Length", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-         if(password.length()>=2 && password.length()<=15)
-        { 
-           
-        }else{
-            cond=false;
-            JOptionPane.showMessageDialog(this, "Check Password Character Length", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-       */
-        if(username.length()>=2 && username.length()<=15)
+        String user=this.username.getText();
+        String pass=this.password.getText();
+ 
+        if(user.length()>=2 && user.length()<=15)
         { 
             cond1=true;
         }else{
             cond1=false;
             JOptionPane.showMessageDialog(this, "Check Username Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(password.length()>=2 && password.length()<=15)
+        if(pass.length()>=2 && pass.length()<=15)
         { 
            cond2=true;
         }else{
@@ -150,13 +146,28 @@ public class Signin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Check Password Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
         if(cond1 && cond2){
-            
+            try {
+                if(DatabaseOperations.checkLogin(user, pass)){
+                    cond=true;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(cond){
+            System.out.println("Lets go forward Login Successful");
         }
     }//GEN-LAST:event_loginActionPerformed
 
     private void forgotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_forgotActionPerformed
+
+    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createActionPerformed
 
     /**
      * @param args the command line arguments
