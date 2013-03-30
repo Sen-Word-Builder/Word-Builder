@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 /**
@@ -34,7 +35,22 @@ public class WordBuilder {
         //MainPage.main(args);
         //ApiFetch.getHypernym("");
         //ApiFetch.getHyponym("");
+        // MainPage.main(args);
+        // BaseIcon.set();
+       // PopUp.main(args);
+     //   Signup.main(args);
+      //  System.out.println(getCurrentUser());
+       // PopUp a =new PopUp();
+        
+        
+     /*   Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        //a.show(input);
+        Notify.showNotification(input);
         MainPage.main(args);
+        */
+        BackGround a = new BackGround();
+       
         
         
      

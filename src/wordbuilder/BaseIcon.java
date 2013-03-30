@@ -29,7 +29,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class BaseIcon {
  
-    public static void set(String [] args) {
+    public static void set() {
         /* Use an appropriate Look and Feel */
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");

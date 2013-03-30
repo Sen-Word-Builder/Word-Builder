@@ -174,7 +174,7 @@ public class ApiFetch {
                 al1.add(wordForms[j]);
             }
             
-            if (why.equals("s") && (uid!=null))                                        //Update make static
+            if (why.equals("s") && (uid!=null))                                        
              {
              ArrayList<String> senddata = new ArrayList();
              senddata.add(uid);

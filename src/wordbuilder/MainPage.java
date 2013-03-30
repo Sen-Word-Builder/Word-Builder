@@ -161,11 +161,13 @@ public class MainPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String toSearch = jTextField1.getText();
+        setEdit();
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setText("");
         jTextArea2.setText("");
         jTextArea3.setText("");
+        
 
 
         if (!(toSearch.equals("") | toSearch.equals(" "))) {
@@ -365,7 +367,28 @@ public class MainPage extends javax.swing.JFrame {
             jTextArea1.setText(" Sorry, queried input does not match the database");
         }
 
-
+      unsetEdit();
+    }
+    
+    /**
+     * Make all TextArea Editable
+     */
+    public void setEdit()
+    {
+        jTextArea1.setEditable(true);
+        jTextArea1.setEditable(true);
+        jTextArea1.setEditable(true);
+    }
+    
+    /**
+     * Make all Textarea uneditable
+     */
+    public void unsetEdit()
+    {
+        jTextArea1.setEditable(false);
+        jTextArea2.setEditable(false);
+        jTextArea3.setEditable(false);
+        
     }
 
     /**
@@ -396,8 +419,10 @@ public class MainPage extends javax.swing.JFrame {
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainPage().setVisible(true);
+                
             }
         });
     }
