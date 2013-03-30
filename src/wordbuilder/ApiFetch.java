@@ -4,7 +4,9 @@
  */
 package wordbuilder;
 
+import database.DatabaseOperations;
 import edu.smu.tspell.wordnet.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -158,17 +160,53 @@ public class ApiFetch {
      * @return String Arraylist will contain meaning of the word and all the
      * wordforms present in the synset.
      */
-    public static ArrayList<String> getMeaning(String uid, String word, String why) {
+    public static ArrayList<String> getMeaning(String uid, String word, String why) throws SQLException, ClassNotFoundException {
         initInstance();
         ArrayList<String> al1 = new ArrayList<>();
         Synset[] synset = database.getSynsets(word);
+       
+        int index = 0;
+        if (synset.length > 0) {
+            index = ApiFetch.getMaxFrequency(word);
+            al1.add(synset[index].getDefinition());
+            String[] wordForms = synset[index].getWordForms();
+            for (int j = 0; j < wordForms.length; j++) {
+                al1.add(wordForms[j]);
+            }
+            
+            if (why.equals("s") && (uid!=null))                                        //Update make static
+             {
+             ArrayList<String> senddata = new ArrayList();
+             senddata.add(uid);
+             senddata.add(word);
+             senddata.add(String.valueOf(synset[ApiFetch.getMaxFrequency(word)].getTagCount(word)));
+             DatabaseOperations.updateHasSearched(senddata);
+             
+             
+             }
+        }
+      
+        return al1;
+
+    }
+    
+    /**
+     * 
+     * @param inputword Word for which Max Frequency index is to be obtained
+     * @return Integer representing the index of pertaining to Maximum Frequency.
+     */
+    public static int getMaxFrequency(String inputword)
+    {
+        initInstance();
+        Synset[] synset = database.getSynsets(inputword);
         int[] frequency = new int[synset.length];
         int max = -1;
         int index = 0;
+        int Maxindex =-1;
         if (synset.length > 0) {
             for (int i = 0; i < synset.length; i++) {
 
-                frequency[i] = synset[i].getTagCount(word);
+                frequency[i] = synset[i].getTagCount(inputword);
 
             }
             for (int j = 0; j < synset.length; j++) {
@@ -178,26 +216,9 @@ public class ApiFetch {
                 }
 
             }
-            al1.add(synset[index].getDefinition());
-            String[] wordForms = synset[index].getWordForms();
-            for (int j = 0; j < wordForms.length; j++) {
-                al1.add(wordForms[j]);
-            }
-            
-            if (why.equals("s"))                                        //Update make static
-             {
-             ArrayList<String> senddata = new ArrayList();
-             senddata.add(uid);
-             senddata.add(word);
-             senddata.add(String.valueOf(frequency[index]));
-             System.out.println("hello"+ senddata.get(2));
-             
-             }
         }
-         
-
-        return al1;
-
+        Maxindex =index;
+        return Maxindex;
     }
 
     /**
