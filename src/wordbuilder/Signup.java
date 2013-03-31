@@ -153,65 +153,68 @@ public class Signup extends javax.swing.JFrame {
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         // TODO add your handling code here:
-        String name=this.name.getText();
-        String user=this.username.getText();
-        String pass=this.password.getText();
-        String ques=this.question.getText();
-        String ans=this.answer.getText();
-        
-        boolean cond1=true;
-        boolean cond2=true;
-        boolean cond3=true;
-        boolean cond4=true;
-        boolean cond5=true;
+        String name = this.name.getText();
+        String user = this.username.getText();
+        String pass = this.password.getText();
+        String ques = this.question.getText();
+        String ans = this.answer.getText();
 
-        boolean cond=false;
-        if(name.length()>=2 && name.length()<=30)
-        { 
-            cond1=true;
-        }else{
-            cond1=false;
+        boolean cond1 = true;
+        boolean cond2 = true;
+        boolean cond3 = true;
+        boolean cond4 = true;
+        boolean cond5 = true;
+
+        boolean cond = false;
+        if (name.length() >= 2 && name.length() <= 30) {
+            cond1 = true;
+        } else {
+            cond1 = false;
             JOptionPane.showMessageDialog(this, "Check Name Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(user.length()>=2 && user.length()<=15)
-        { 
-            cond2=true;
-        }else{
-            cond2=false;
+        if (user.length() >= 2 && user.length() <= 15) {
+            cond2 = true;
+        } else {
+            cond2 = false;
             JOptionPane.showMessageDialog(this, "Check Username Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(pass.length()>=2 && pass.length()<=15)
-        { 
-            cond3=true;
-        }else{
-            cond3=false;
+        if (pass.length() >= 2 && pass.length() <= 15) {
+            cond3 = true;
+        } else {
+            cond3 = false;
             JOptionPane.showMessageDialog(this, "Check Password Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(ques.length()>=2 && ques.length()<=30)
-        { 
-            cond4=true;
-        }else{
-            cond4=false;
+        if (ques.length() >= 2 && ques.length() <= 30) {
+            cond4 = true;
+        } else {
+            cond4 = false;
             JOptionPane.showMessageDialog(this, "Check Question Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        if(ans.length()>=2 && user.length()<=20)
-        { 
-            cond5=true;
-        }else{
-            cond5=false;
+        if (ans.length() >= 2 && user.length() <= 20) {
+            cond5 = true;
+        } else {
+            cond5 = false;
             JOptionPane.showMessageDialog(this, "Check Answer Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        if(cond1 && cond2 && cond3 && cond4 && cond5){
+
+        if (cond1 && cond2 && cond3 && cond4 && cond5) {
             try {
-                cond=DatabaseOperations.createUser(name, user, pass, ques, ans);
+                cond = DatabaseOperations.createUser(name, user, pass, ques, ans);
+                if (cond) {
+
+                    this.setVisible(false);
+                    MainPage frame = new MainPage();
+                    WordBuilder.currentU = user;
+                    frame.setVisible(true);
+                }
+
             } catch (SQLException ex) {
                 Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(cond==false){
-                JOptionPane.showMessageDialog(this, "Username already exists","Error",JOptionPane.ERROR_MESSAGE);
+            if (cond == false) {
+                JOptionPane.showMessageDialog(this, "Username already exists", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_createActionPerformed

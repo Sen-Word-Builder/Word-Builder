@@ -50,5 +50,5 @@ public class WordBuilder {
         currentU = user;
     }
     
-    private static String currentU;
+    public  static String currentU;
 }
