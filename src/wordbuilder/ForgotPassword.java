@@ -157,6 +157,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         questionlabel.setVisible(true);
         check.setVisible(true);
         this.username.setEditable(false);
+        enter.setVisible(false);
               }
               
           } catch (SQLException ex) {
