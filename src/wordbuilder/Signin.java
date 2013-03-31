@@ -158,15 +158,29 @@ public class Signin extends javax.swing.JFrame {
         }
         if(cond){
             System.out.println("Lets go forward Login Successful");
+            
+        MainPage frame=new MainPage();
+        WordBuilder.currentU=user;
+        this.setVisible(false);
+        frame.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Invalid Login", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_loginActionPerformed
 
     private void forgotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        ForgotPassword frame=new ForgotPassword();
+        frame.setVisible(true);
     }//GEN-LAST:event_forgotActionPerformed
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Signup frame=new Signup();
+        frame.setVisible(true);
     }//GEN-LAST:event_createActionPerformed
 
     /**
