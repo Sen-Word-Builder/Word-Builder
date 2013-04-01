@@ -4,6 +4,7 @@
  */
 package wordbuilder;
 
+import database.DatabaseOperations;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -49,10 +50,18 @@ public class WordBuilder {
         Notify.showNotification(input);
         MainPage.main(args);
         */
+
+/*
+ * Chandra's code....to be added later (removed for testing
         BackGround a = new BackGround();
-       
-        
-        
+  */
+
+        //Database speed increased.....
+        DatabaseOperations.init();
+
+        Signin frame=new Signin();
+         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        frame.setVisible(true);
      
        
     }
