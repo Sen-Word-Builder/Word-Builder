@@ -32,6 +32,7 @@ public class Options extends javax.swing.JFrame {
      
      
      addWindowListener(winadap);
+     jButton1.setText(BackGround.getCurrentKey());
      
     }
 
@@ -46,6 +47,7 @@ public class Options extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +62,7 @@ public class Options extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.setText("Change");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -79,20 +81,25 @@ public class Options extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jToggleButton1)))
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jToggleButton1)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,11 +109,17 @@ public class Options extends javax.swing.JFrame {
         // TODO add your handling code here:
         jButton1.setText(BackGround.getCurrentKey());
         
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println(evt.paramString());
+        jToggleButton1.setSelected(true);
+        
+            
+                String tempset= BackGround.listen();
+       jButton1.setText(tempset);
+       jToggleButton1.setSelected(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
@@ -148,6 +161,7 @@ public class Options extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
