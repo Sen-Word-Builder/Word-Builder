@@ -5,3 +5,7 @@ src/wordbuilder/Quiz.java eol=lf
 src/wordbuilder/MainPage.form eol=lf
 src/wordbuilder/PopUp.form eol=lf
 src/wordbuilder/PopUP.java eol=lf
+src/wordbuilder/ForgotPassword.form eol=lf
+src/wordbuilder/Signin.form eol=lf
+src/wordbuilder/*.form eol=lf
+src/wordbuilder/Options.java eol=lf

@@ -4,10 +4,8 @@
  */
 package wordbuilder;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -49,13 +47,30 @@ public class WordBuilder {
         Notify.showNotification(input);
         MainPage.main(args);
         */
-        BackGround a = new BackGround();
-       
+                new Thread() 
+                {
+                @Override
+                public void run() {
+                    try {
+                        BackGround a = new BackGround();
+                    } catch (Exception e) {
+                    }
+                }
         
+                }
+                        .start();
+                
+                
+                
         
+        ab = new MainPage();
+      //  ab.setVisible(true);
+        BaseIcon bi = new BaseIcon();
+      //  Options op = new Options();
      
        
     }
+    
     
     public static String getCurrentUser()
     {
@@ -65,6 +80,12 @@ public class WordBuilder {
     {
         currentU = user;
     }
+    public static MainPage getMainpage()
+    {
+        return ab;
+    }
     
-    public  static String currentU;
+    private static String currentU;
+    private static MainPage ab;
+    
 }

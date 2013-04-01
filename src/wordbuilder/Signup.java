@@ -204,7 +204,7 @@ public class Signup extends javax.swing.JFrame {
 
                     this.setVisible(false);
                     MainPage frame = new MainPage();
-                    WordBuilder.currentU = user;
+                    WordBuilder.setCurrentUser(user);
                     frame.setVisible(true);
                 }
 

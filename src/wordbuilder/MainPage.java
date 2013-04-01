@@ -8,10 +8,14 @@ import database.DatabaseOperations;
 import edu.smu.tspell.wordnet.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.text.BadLocationException;
 
 /**
  *
@@ -22,9 +26,25 @@ public class MainPage extends javax.swing.JFrame {
     /**
      * Creates new form MainPage
      */
+    WindowAdapter windowadapter;
     public MainPage() {
         initComponents();
-    }
+        
+      //  this.setUndecorated(true);
+        
+     windowadapter = new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent we)
+            {
+                setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                //System.out.println("hello world");
+                //System.exit(0);
+            }
+        };
+     
+     
+     addWindowListener(windowadapter);
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,21 +67,26 @@ public class MainPage extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
+        jButton6 = new javax.swing.JButton();
 
         jToggleButton3.setText("jToggleButton3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("WordBuilder");
 
         jLabel1.setText("Query");
 
         jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -77,12 +102,15 @@ public class MainPage extends javax.swing.JFrame {
         });
 
         jButton2.setText("Option");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Quiz");
 
         jButton4.setText("Analysis");
-
-        jButton5.setText("Help");
 
         jLabel3.setText("Hello User");
 
@@ -98,6 +126,13 @@ public class MainPage extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Antonyms", jScrollPane4);
 
+        jButton6.setText("Hide");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,11 +143,11 @@ public class MainPage extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addGap(32, 32, 32)
+                .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(jSeparator1)
             .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
@@ -126,7 +161,7 @@ public class MainPage extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
@@ -136,8 +171,8 @@ public class MainPage extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -183,6 +218,29 @@ public class MainPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        jButton1.doClick();
+        
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(op==null)
+        {
+             op = new Options();
+        }
+        op.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      *
      * @param inputword Word whose Meanings are rendered on GUI
@@ -190,86 +248,60 @@ public class MainPage extends javax.swing.JFrame {
      * @throws ClassNotFoundException
      */
     private void renderText(String inputword) throws SQLException, ClassNotFoundException {
-        WordNetDatabase database = WordNetDatabase.getFileInstance();
-        Synset[] synset = database.getSynsets(inputword);
-        Synset[] synsetNoun = database.getSynsets(inputword, SynsetType.NOUN);
-        Synset[] synsetAdj = database.getSynsets(inputword, SynsetType.ADJECTIVE);
-        Synset[] synsetAdjsat = database.getSynsets(inputword, SynsetType.ADJECTIVE_SATELLITE);
-        Synset[] synsetAdv = database.getSynsets(inputword, SynsetType.ADVERB);
-        Synset[] synsetVerb = database.getSynsets(inputword, SynsetType.VERB);
-        boolean isValidword = false;
-        int y = 0;
-        ArrayList<String> testcompare = new ArrayList();
-        ArrayList<String> anticompare = new ArrayList();
+        try {
+            WordNetDatabase database = WordNetDatabase.getFileInstance();
+            Synset[] synset = database.getSynsets(inputword,null,false);
+            Synset[] synsetNoun = database.getSynsets(inputword, SynsetType.NOUN,false);
+            Synset[] synsetAdj = database.getSynsets(inputword, SynsetType.ADJECTIVE,false);
+            Synset[] synsetAdjsat = database.getSynsets(inputword, SynsetType.ADJECTIVE_SATELLITE,false);
+            Synset[] synsetAdv = database.getSynsets(inputword, SynsetType.ADVERB,false);
+            Synset[] synsetVerb = database.getSynsets(inputword, SynsetType.VERB,false);
+            boolean isValidword = false;
+            int y = 0;
+            ArrayList<String> testcompare = new ArrayList();
+            ArrayList<String> anticompare = new ArrayList();
 
-        if (synsetNoun.length > 0) {
-            isValidword = true;
-            jTextArea1.append("  " + inputword + " ~ NOUN \n \n");
-            for (int i = 0; i < synsetNoun.length; i++) {
-                y = i + 1;
-                jTextArea1.append(" " + y + ". " + synsetNoun[i].getDefinition() + "\n \n");
-                String[] wordForms = synsetNoun[i].getWordForms();
+            if (synsetNoun.length > 0) {
+                isValidword = true;
+                jTextArea1.append("  " + inputword + " ~ NOUN \n \n");
+                for (int i = 0; i < synsetNoun.length; i++) {
+                    y = i + 1;
+                    jTextArea1.append(" " + y + ". " + synsetNoun[i].getDefinition() + "\n \n");
+                    String[] wordForms = synsetNoun[i].getWordForms();
 
-                for (int j = 0; j < wordForms.length; j++) {
+                    for (int j = 0; j < wordForms.length; j++) {
 
-                    if (!wordForms[j].equals(inputword)) {
-                        if (!testcompare.contains(wordForms[j])) {
-                            jTextArea2.append(wordForms[j] + "\n \n");
-                            testcompare.add(wordForms[j]);
-                        }
-                    }
-                }
-
-
-                WordSense[] antiwordForms = synsetNoun[i].getAntonyms(inputword);
-                for (int k = 0; k < antiwordForms.length; k++) {
-                    
-                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
-                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
-                        anticompare.add(antiwordForms[k].getWordForm());
-
-                    }
-
-
-
-                }
-            }
-        }
-        if (synsetAdj.length > 0) {
-            isValidword = true;
-            jTextArea1.append("  " + inputword + " ~ ADJECTIVE \n \n");
-            for (int i = 0; i < synsetAdj.length; i++) {
-                y = i + 1;
-
-                jTextArea1.append(" " + y + ". " + synsetAdj[i].getDefinition() + "\n \n");
-                String[] wordForms = synsetAdj[i].getWordForms();
-                for (int j = 0; j < wordForms.length; j++) {
-                    if (!wordForms[j].equals(inputword)) {
-                        if (!testcompare.contains(wordForms[j])) {
-                            jTextArea2.append(wordForms[j] + "\n \n");
-                            testcompare.add(wordForms[j]);
+                        if (!wordForms[j].equals(inputword)) {
+                            if (!testcompare.contains(wordForms[j])) {
+                                jTextArea2.append(wordForms[j] + "\n \n");
+                                testcompare.add(wordForms[j]);
+                            }
                         }
                     }
 
-                }
 
-                WordSense[] antiwordForms = synsetAdj[i].getAntonyms(inputword);
-                for (int k = 0; k < antiwordForms.length; k++) {
-                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
-                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
-                        anticompare.add(antiwordForms[k].getWordForm());
+                    WordSense[] antiwordForms = synsetNoun[i].getAntonyms(inputword);
+                    for (int k = 0; k < antiwordForms.length; k++) {
+                        
+                        if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                            jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                            anticompare.add(antiwordForms[k].getWordForm());
+
+                        }
+
+
 
                     }
                 }
-
-
             }
+            if (synsetAdj.length > 0) {
+                isValidword = true;
+                jTextArea1.append("  " + inputword + " ~ ADJECTIVE \n \n");
+                for (int i = 0; i < synsetAdj.length; i++) {
+                    y = i + 1;
 
-            if (synsetAdjsat.length > 0) {
-                for (int i = 0; i < synsetAdjsat.length; i++) {
-                    y++;
-                    jTextArea1.append(" " + y + ". " + synsetAdjsat[i].getDefinition() + "\n \n");
-                    String[] wordForms = synsetAdjsat[i].getWordForms();
+                    jTextArea1.append(" " + y + ". " + synsetAdj[i].getDefinition() + "\n \n");
+                    String[] wordForms = synsetAdj[i].getWordForms();
                     for (int j = 0; j < wordForms.length; j++) {
                         if (!wordForms[j].equals(inputword)) {
                             if (!testcompare.contains(wordForms[j])) {
@@ -280,7 +312,7 @@ public class MainPage extends javax.swing.JFrame {
 
                     }
 
-                    WordSense[] antiwordForms = synsetAdjsat[i].getAntonyms(inputword);
+                    WordSense[] antiwordForms = synsetAdj[i].getAntonyms(inputword);
                     for (int k = 0; k < antiwordForms.length; k++) {
                         if (!anticompare.contains(antiwordForms[k].getWordForm())) {
                             jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
@@ -290,84 +322,115 @@ public class MainPage extends javax.swing.JFrame {
                     }
 
 
+                }
 
+                if (synsetAdjsat.length > 0) {
+                    for (int i = 0; i < synsetAdjsat.length; i++) {
+                        y++;
+                        jTextArea1.append(" " + y + ". " + synsetAdjsat[i].getDefinition() + "\n \n");
+                        String[] wordForms = synsetAdjsat[i].getWordForms();
+                        for (int j = 0; j < wordForms.length; j++) {
+                            if (!wordForms[j].equals(inputword)) {
+                                if (!testcompare.contains(wordForms[j])) {
+                                    jTextArea2.append(wordForms[j] + "\n \n");
+                                    testcompare.add(wordForms[j]);
+                                }
+                            }
+                        }
+
+                        WordSense[] antiwordForms = synsetAdjsat[i].getAntonyms(inputword);
+                        for (int k = 0; k < antiwordForms.length; k++) {
+                            if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                                jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                                anticompare.add(antiwordForms[k].getWordForm());
+
+                            }
+                        }
+
+
+
+                    }
                 }
             }
-        }
-        if (synsetVerb.length > 0) {
-            isValidword = true;
-            jTextArea1.append("  " + inputword + " ~ VERB \n \n");
-            for (int i = 0; i < synsetVerb.length; i++) {
-                y = i + 1;
-                jTextArea1.append(" " + y + ". " + synsetVerb[i].getDefinition() + "\n \n");
-                String[] wordForms = synsetVerb[i].getWordForms();
-                for (int j = 0; j < wordForms.length; j++) {
-                    if (!wordForms[j].equals(inputword)) {
-                        if (!testcompare.contains(wordForms[j])) {
-                            jTextArea2.append(wordForms[j] + "\n \n");
-                            testcompare.add(wordForms[j]);
+            if (synsetVerb.length > 0) {
+                isValidword = true;
+                jTextArea1.append("  " + inputword + " ~ VERB \n \n");
+                for (int i = 0; i < synsetVerb.length; i++) {
+                    y = i + 1;
+                    jTextArea1.append(" " + y + ". " + synsetVerb[i].getDefinition() + "\n \n");
+                    String[] wordForms = synsetVerb[i].getWordForms();
+                    for (int j = 0; j < wordForms.length; j++) {
+                        if (!wordForms[j].equals(inputword)) {
+                            if (!testcompare.contains(wordForms[j])) {
+                                jTextArea2.append(wordForms[j] + "\n \n");
+                                testcompare.add(wordForms[j]);
+                            }
+                        }
+
+                    }
+
+                    WordSense[] antiwordForms = synsetVerb[i].getAntonyms(inputword);
+                    for (int k = 0; k < antiwordForms.length; k++) {
+                        if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                            jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                            anticompare.add(antiwordForms[k].getWordForm());
+
                         }
                     }
 
+
                 }
-
-                WordSense[] antiwordForms = synsetVerb[i].getAntonyms(inputword);
-                for (int k = 0; k < antiwordForms.length; k++) {
-                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
-                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
-                        anticompare.add(antiwordForms[k].getWordForm());
-
-                    }
-                }
-
 
             }
+            if (synsetAdv.length > 0) {
+                isValidword = true;
+                jTextArea1.append("  " + inputword + " ~ ADVERB \n \n");
+                for (int i = 0; i < synsetAdv.length; i++) {
+                    y = i + 1;
+                    jTextArea1.append(" " + y + ". " + synsetAdv[i].getDefinition() + "\n \n");
+                    String[] wordForms = synsetAdv[i].getWordForms();
+                    for (int j = 0; j < wordForms.length; j++) {
+                        if (!wordForms[j].equals(inputword)) {
+                            if (!testcompare.contains(wordForms[j])) {
+                                jTextArea2.append(wordForms[j] + "\n \n");
+                                testcompare.add(wordForms[j]);
+                            }
+                        }
 
-        }
-        if (synsetAdv.length > 0) {
-            isValidword = true;
-            jTextArea1.append("  " + inputword + " ~ ADVERB \n \n");
-            for (int i = 0; i < synsetAdv.length; i++) {
-                y = i + 1;
-                jTextArea1.append(" " + y + ". " + synsetAdv[i].getDefinition() + "\n \n");
-                String[] wordForms = synsetAdv[i].getWordForms();
-                for (int j = 0; j < wordForms.length; j++) {
-                    if (!wordForms[j].equals(inputword)) {
-                        if (!testcompare.contains(wordForms[j])) {
-                            jTextArea2.append(wordForms[j] + "\n \n");
-                            testcompare.add(wordForms[j]);
+                    }
+
+                    WordSense[] antiwordForms = synsetAdv[i].getAntonyms(inputword);
+                    for (int k = 0; k < antiwordForms.length; k++) {
+                        if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                            jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                            anticompare.add(antiwordForms[k].getWordForm());
+
                         }
                     }
 
+
                 }
+            }
 
-                WordSense[] antiwordForms = synsetAdv[i].getAntonyms(inputword);
-                for (int k = 0; k < antiwordForms.length; k++) {
-                    if (!anticompare.contains(antiwordForms[k].getWordForm())) {
-                        jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
-                        anticompare.add(antiwordForms[k].getWordForm());
+            if (isValidword) {
 
-                    }
+                if (WordBuilder.getCurrentUser() != null) {
+                    ArrayList<String> alsenddata = new ArrayList();
+                    alsenddata.add(WordBuilder.getCurrentUser());
+                    alsenddata.add(inputword);
+                    alsenddata.add(String.valueOf(synset[ApiFetch.getMaxFrequency(inputword)].getTagCount(inputword)));
+                    DatabaseOperations.updateHasSearched(alsenddata);
                 }
-
-
+            } else {
+                jTextArea1.setText(" Sorry, queried input does not match the database");
             }
+
+          unsetEdit();
+          
+        } catch (Exception ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        if (isValidword) {
-
-            if (WordBuilder.getCurrentUser() != null) {
-                ArrayList<String> alsenddata = new ArrayList();
-                alsenddata.add(WordBuilder.getCurrentUser());
-                alsenddata.add(inputword);
-                alsenddata.add(String.valueOf(synset[ApiFetch.getMaxFrequency(inputword)].getTagCount(inputword)));
-                DatabaseOperations.updateHasSearched(alsenddata);
-            }
-        } else {
-            jTextArea1.setText(" Sorry, queried input does not match the database");
-        }
-
-      unsetEdit();
+        
     }
     
     /**
@@ -390,6 +453,13 @@ public class MainPage extends javax.swing.JFrame {
         jTextArea3.setEditable(false);
         
     }
+   
+    /*public void windowClosing(WindowEvent e)
+    {
+        System.out.println(" Hello world");
+        BackGround.exitBG();
+    }
+    */
 
     /**
      * @param args the command line arguments
@@ -426,12 +496,13 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
     }
+    private Options op;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

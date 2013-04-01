@@ -18,6 +18,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -29,7 +30,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class BaseIcon {
  
-    public static void set() {
+    public  BaseIcon() {
         /* Use an appropriate Look and Feel */
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -63,8 +64,10 @@ public class BaseIcon {
         
          
         // Create a popup menu components
-        MenuItem aboutItem = new MenuItem("About");
+        String userName = "Hi " + WordBuilder.getCurrentUser();
+        MenuItem aboutItem = new MenuItem();
         CheckboxMenuItem cb1 = new CheckboxMenuItem("Notify");
+        cb1.setState(true);
        // CheckboxMenuItem cb2 = new CheckboxMenuItem("Set tooltip");
         MenuItem takeQuiz = new MenuItem("Take Quiz");
         MenuItem showAnalysis = new MenuItem("Show Analysis");
@@ -75,7 +78,8 @@ public class BaseIcon {
         MenuItem exitItem = new MenuItem("Exit");
          
         //Add components to popup menu
-        popup.add(aboutItem);
+        popup.add(userName);
+        
         popup.addSeparator();
         popup.add(cb1);
      //   popup.add(cb2);
@@ -101,28 +105,34 @@ public class BaseIcon {
          
         trayIcon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,
-                        "This dialog box is run from System Tray");
+                
+                        WordBuilder.getMainpage().setVisible(true);
+                
                 
             }
         });
          
-        aboutItem.addActionListener(new ActionListener() {
+       /* aboutItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,
                         "This dialog box is run from the About menu item");
             }
         });
+        */ 
          
         cb1.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 int cb1Id = e.getStateChange();
                 if (cb1Id == ItemEvent.SELECTED){
-                    
-                } else {
-                    trayIcon.setImageAutoSize(false);
-                    
+                    Notify.setNotify();
+                    System.out.println(Notify.getNotify());
+                } 
+                else if(cb1Id == ItemEvent.DESELECTED)
+                {
+                    Notify.unSetNotify();
+                    System.out.println(Notify.getNotify());
                 }
+                        
             }
         });
          
@@ -142,6 +152,7 @@ public class BaseIcon {
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 tray.remove(trayIcon);
+                BackGround.exitBG();
                 System.exit(0);
             }
         });

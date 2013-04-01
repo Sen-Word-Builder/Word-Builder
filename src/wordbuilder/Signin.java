@@ -160,7 +160,7 @@ public class Signin extends javax.swing.JFrame {
             System.out.println("Lets go forward Login Successful");
             
         MainPage frame=new MainPage();
-        WordBuilder.currentU=user;
+        WordBuilder.setCurrentUser(user);
         this.setVisible(false);
         frame.setVisible(true);
         }
