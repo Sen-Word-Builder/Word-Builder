@@ -132,7 +132,7 @@ public class ForgotPassword extends javax.swing.JFrame {
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
         // TODO add your handling code here:
        //  DatabaseOperations d= new DatabaseOperations();
-              ArrayList<String> list=new ArrayList<>();
+              ArrayList<String> list=new ArrayList<String>();
               String pass,ques,ans,answ;
         String user=this.username.getText();
         
@@ -182,7 +182,7 @@ public class ForgotPassword extends javax.swing.JFrame {
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
-          ArrayList<String> list=new ArrayList<>();
+          ArrayList<String> list=new ArrayList<String>();
               String pass,ques,ans,answ;
         
      //   DatabaseOperations d=new DatabaseOperations();

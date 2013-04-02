@@ -82,7 +82,7 @@ public class DatabaseOperations {
     public static ArrayList<String> recoverPassword(String uid) throws SQLException, ClassNotFoundException {
     //    db_con = createConnection();
 
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<String>();
 
         Statement stmt = db_con.createStatement();
 
