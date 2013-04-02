@@ -63,6 +63,7 @@ public class BackGround implements NativeKeyListener {
     @Override
     public void nativeKeyPressed(NativeKeyEvent nke) {
         
+        
         if(nke.getKeyCode() == keyFpressed)
         {
             iskeyFpressed = true;
@@ -72,7 +73,7 @@ public class BackGround implements NativeKeyListener {
       
         if (iskeyFpressed) {
             {
-                
+                tempkeyS = nke.getKeyCode();
                 if(nke.getKeyCode() == keySpressed)
                 {
                     
@@ -206,8 +207,26 @@ public class BackGround implements NativeKeyListener {
         String temp= NativeKeyEvent.getKeyText(keyFpressed)+" + "+NativeKeyEvent.getKeyText(keySpressed);
         return temp;
     }
+    public static String listen()
+    {
+        tempkeyS=0;
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BackGround.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       if(tempkeyS!=0)
+       {
+           writeToFile(17,tempkeyS);
+       }
+       
+       return getCurrentKey();
+       
+    }
     static int keyFpressed ;
     static int keySpressed ;
     boolean iskeyFpressed = false;
     
+ 
+    static int tempkeyS;
 }

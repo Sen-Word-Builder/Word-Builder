@@ -51,6 +51,7 @@ public class WordBuilder {
         Notify.showNotification(input);
         MainPage.main(args);
         */
+<<<<<<< HEAD
 
 
 
@@ -66,6 +67,29 @@ public class WordBuilder {
          frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
+=======
+                new Thread() 
+                {
+                @Override
+                public void run() {
+                    try {
+                        BackGround a = new BackGround();
+                    } catch (Exception e) {
+                    }
+                }
+        
+                }
+                        .start();
+                
+                
+                
+        //Signin in = new Signin();
+        //in.setVisible(true);
+        ab = new MainPage();
+       ab.setVisible(true);
+       bi = new BaseIcon();
+        Options op = new Options();
+>>>>>>> word_cravip
      
        
     }
@@ -86,5 +110,6 @@ public class WordBuilder {
     
     private static String currentU;
     private static MainPage ab;
+    private static BaseIcon bi ;
     
 }

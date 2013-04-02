@@ -206,6 +206,7 @@ public class Signup extends javax.swing.JFrame {
                     MainPage frame = new MainPage();
                     WordBuilder.setCurrentUser(user);
                     frame.setVisible(true);
+                    BaseIcon bi = new BaseIcon();
                 }
 
             } catch (SQLException ex) {
