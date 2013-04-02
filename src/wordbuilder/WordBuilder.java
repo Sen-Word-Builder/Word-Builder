@@ -4,6 +4,10 @@
  */
 package wordbuilder;
 
+
+import database.DatabaseOperations;
+import java.io.File;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -47,26 +51,21 @@ public class WordBuilder {
         Notify.showNotification(input);
         MainPage.main(args);
         */
-                new Thread() 
-                {
-                @Override
-                public void run() {
-                    try {
-                        BackGround a = new BackGround();
-                    } catch (Exception e) {
-                    }
-                }
-        
-                }
-                        .start();
-                
-                
-                
-        
-        ab = new MainPage();
-      //  ab.setVisible(true);
-        BaseIcon bi = new BaseIcon();
-      //  Options op = new Options();
+
+
+
+/*
+ * Chandra's code....to be added later (removed for testing
+        BackGround a = new BackGround();
+  */
+
+        //Database speed increased.....
+        DatabaseOperations.init();
+
+        Signin frame=new Signin();
+         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
      
        
     }
