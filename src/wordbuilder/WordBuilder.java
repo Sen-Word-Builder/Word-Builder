@@ -62,11 +62,12 @@ public class WordBuilder {
                 
                 
                 
-        
+        //Signin in = new Signin();
+        //in.setVisible(true);
         ab = new MainPage();
-      //  ab.setVisible(true);
-        BaseIcon bi = new BaseIcon();
-      //  Options op = new Options();
+       ab.setVisible(true);
+       bi = new BaseIcon();
+        Options op = new Options();
      
        
     }
@@ -87,5 +88,6 @@ public class WordBuilder {
     
     private static String currentU;
     private static MainPage ab;
+    private static BaseIcon bi ;
     
 }

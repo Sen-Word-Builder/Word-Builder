@@ -162,6 +162,7 @@ public class Signin extends javax.swing.JFrame {
         MainPage frame=new MainPage();
         WordBuilder.setCurrentUser(user);
         this.setVisible(false);
+        BaseIcon bi = new BaseIcon();
         frame.setVisible(true);
         }
         else{
