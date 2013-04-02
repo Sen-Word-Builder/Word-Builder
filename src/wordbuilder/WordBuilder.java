@@ -19,6 +19,11 @@ import java.util.TreeSet;
  */
 public class WordBuilder {
 
+    static Signin signin=new Signin();
+    static Signup signup=new Signup();
+    static ForgotPassword forgotpassword=new ForgotPassword();
+    static MainPage mainpage=new MainPage();
+    
     /**
      * @param args the command line arguments
      */
@@ -57,13 +62,18 @@ public class WordBuilder {
   */
 
         //Database speed increased.....
+        
+        /*
         DatabaseOperations.init();
 
         Signin frame=new Signin();
          frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
      
-       
+       */
+        
+        DatabaseOperations.init();
+        WordBuilder.signin.setVisible(true);
     }
     
     public static String getCurrentUser()
