@@ -7,7 +7,6 @@ package wordbuilder;
 import java.awt.AWTException;
 import java.awt.CheckboxMenuItem;
 import java.awt.Image;
-import java.awt.Menu;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
@@ -18,8 +17,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -28,13 +25,16 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author snooze-wake
  */
-public class BaseIcon {
+public class BaseIcon  {
  
-    public  BaseIcon() {
+    public  BaseIcon()  {
         /* Use an appropriate Look and Feel */
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+            
+           // UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+           
+            
         } catch (UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class BaseIcon {
     }
     
      
-    private static void createAndShowGUI() {
+    public static void createAndShowGUI() {
         //Check the SystemTray support
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
@@ -106,7 +106,8 @@ public class BaseIcon {
         trayIcon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
-                        WordBuilder.getMainpage().setVisible(true);
+                        WordBuilder.mainpage.setVisible(true);
+                        WordBuilder.mainpage.setFocusable(true);
                 
                 
             }

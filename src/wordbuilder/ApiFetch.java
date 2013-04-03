@@ -96,15 +96,44 @@ public class ApiFetch {
     /**
      *
      * @param input Word for which three level Hypernyms are to be obtained
-     * @return Arraylist contains all three level Hypernyms. First entry
-     * contains number of wordforms in Level 1 Hypernym and corresponding
-     * wordsforms are followed, same thing is repeated for Level 2 and Level 3.
+     * @return Arraylist contains all three level Hypernyms and words similar to word 
+     * searched. It contains data in following order: Similar words, NoundHypernym Level 1,2,3
+     * words and Verb Hypernym 1,2,3 words.
      */
     public static ArrayList<String> getHypernym(String input) {
         initInstance();
         ArrayList<String> al2 = new ArrayList();
+        Synset [] synadj = database.getSynsets(input, SynsetType.ADJECTIVE, false);
+        if(synadj.length >0)
+        {
+        
+        AdjectiveSynset synadj1 = (AdjectiveSynset) synadj[0];
+        AdjectiveSynset [] synadjarr = synadj1.getSimilar();
+        if(synadjarr.length > 0)
+        {
+            for(int j=0;j<synadjarr.length;j++)
+            {
+                
+            
+             String[] simwords = synadjarr[j].getWordForms();
+                if (simwords.length > 0) // if there is noun hypernym of the given word present 
+                {
+
+                ///    al2.add(String.valueOf(hypernymwordsL1.length));
+                    for (int i = 0; i < simwords.length; i++) {
+                        al2.add(simwords[i]);
+                    }
+
+                }
+        }
+        }
+        
+    }
+        
         Synset[] synset = database.getSynsets(input, SynsetType.NOUN,false);
         if (synset.length > 0) {
+            
+            //al2.add("N:");
             NounSynset ns1 = (NounSynset) synset[0];                         // Top most synset in noun synsets.
             NounSynset[] nsL1 = ns1.getHypernyms();
             if (nsL1.length > 0) {
@@ -112,7 +141,7 @@ public class ApiFetch {
                 if (hypernymwordsL1.length > 0) // if there is noun hypernym of the given word present 
                 {
 
-                    al2.add(String.valueOf(hypernymwordsL1.length));
+                ///    al2.add(String.valueOf(hypernymwordsL1.length));
                     for (int i = 0; i < hypernymwordsL1.length; i++) {
                         al2.add(hypernymwordsL1[i]);
                     }
@@ -124,7 +153,7 @@ public class ApiFetch {
                     if (hypernymwordsL2.length > 0) // if there is noun hypernym of the given word present 
                     {
 
-                        al2.add(String.valueOf(hypernymwordsL2.length));
+                      //  al2.add(String.valueOf(hypernymwordsL2.length));
                         al2.addAll(Arrays.asList(hypernymwordsL2));
 
                     }
@@ -134,7 +163,7 @@ public class ApiFetch {
                         if (hypernymwordsL3.length > 0) // if there is noun hypernym of the given word present 
                         {
 
-                            al2.add(String.valueOf(hypernymwordsL3.length));
+                       //     al2.add(String.valueOf(hypernymwordsL3.length));
                             al2.addAll(Arrays.asList(hypernymwordsL3));
 
                         }
@@ -145,10 +174,52 @@ public class ApiFetch {
             }
 
         }
-            for (int i=0;i< al2.size();i++)
+       
+            Synset[] synsetverb = database.getSynsets(input, SynsetType.VERB,false);
+        if(synsetverb.length>0)
         {
-            System.out.println(al2.get(i));
+            
+          //  al2.add("V:");
+              VerbSynset vs1 =  (VerbSynset) synsetverb[0];                         // Top most synset in verb synsets.
+            VerbSynset[] vsL1 = vs1.getHypernyms();
+            if (vsL1.length > 0) {
+                String[] hypernymwordsL1 = vsL1[0].getWordForms();
+                if (hypernymwordsL1.length > 0) // if there is verb hypernym of the given word present 
+                {
+
+                  //  al2.add(String.valueOf(hypernymwordsL1.length));
+                    for (int i = 0; i < hypernymwordsL1.length; i++) {
+                        al2.add(hypernymwordsL1[i]);
+                    }
+
+                }
+                VerbSynset[] vsL2 = vsL1[0].getHypernyms();
+                if (vsL2.length > 0) {
+                    String[] hypernymwordsL2 = vsL2[0].getWordForms();
+                    if (hypernymwordsL2.length > 0) // if there is verb hypernym of the given word present 
+                    {
+
+                  //      al2.add(String.valueOf(hypernymwordsL2.length));
+                        al2.addAll(Arrays.asList(hypernymwordsL2));
+
+                    }
+                    VerbSynset[] vsL3 = vsL2[0].getHypernyms();
+                    if (vsL3.length > 0) {
+                        String[] hypernymwordsL3 = vsL3[0].getWordForms();
+                        if (hypernymwordsL3.length > 0) // if there is noun hypernym of the given word present 
+                        {
+
+                      //      al2.add(String.valueOf(hypernymwordsL3.length));
+                            al2.addAll(Arrays.asList(hypernymwordsL3));
+
+                        }
+                    }
+
+                }
         }
+        }
+        
+        
         return al2;
     }
 
@@ -245,7 +316,7 @@ public class ApiFetch {
                 if (hyponymwordsL1.length > 0) // if there is noun hyponym of the given word present 
                 {
 
-                    al3.add(String.valueOf(hyponymwordsL1.length));
+                //    al3.add(String.valueOf(hyponymwordsL1.length));
                     for (int i = 0; i < hyponymwordsL1.length; i++) {
                         al3.add(hyponymwordsL1[i]);
                     }
@@ -257,7 +328,7 @@ public class ApiFetch {
                     if (hyponymwordsL2.length > 0) // if there is noun hyponym of the given word present 
                     {
 
-                        al3.add(String.valueOf(hyponymwordsL2.length));
+                     //   al3.add(String.valueOf(hyponymwordsL2.length));
                         al3.addAll(Arrays.asList(hyponymwordsL2));
 
                     }
@@ -267,7 +338,7 @@ public class ApiFetch {
                         if (hyponymwordsL3.length > 0) // if there is noun hyponym of the given word present 
                         {
 
-                            al3.add(String.valueOf(hyponymwordsL3.length));
+                          //  al3.add(String.valueOf(hyponymwordsL3.length));
                             al3.addAll(Arrays.asList(hyponymwordsL3));
 
                         }
@@ -278,10 +349,7 @@ public class ApiFetch {
             }
 
         }
-        for (int i=0;i< al3.size();i++)
-        {
-            System.out.println(al3.get(i));
-        }
+        
         return al3;
     }
     private static WordNetDatabase database;

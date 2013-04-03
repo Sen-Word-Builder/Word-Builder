@@ -137,6 +137,7 @@ public class BackGround implements NativeKeyListener {
     public static void readFile()
     {
          try {
+             new File("hello").getAbsolutePath();
              File fopen =  new File("wordnet/data/short.txt");
              fopen.createNewFile();
              
