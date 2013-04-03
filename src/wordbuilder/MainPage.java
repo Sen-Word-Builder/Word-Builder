@@ -75,6 +75,7 @@ public class MainPage extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jButton6 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jToggleButton3.setText("jToggleButton3");
 
@@ -82,7 +83,6 @@ public class MainPage extends javax.swing.JFrame {
 
         jLabel1.setText("Query");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -134,6 +134,13 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Logout");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +154,9 @@ public class MainPage extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jSeparator1)
             .addComponent(jSeparator2)
@@ -162,7 +171,7 @@ public class MainPage extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
@@ -173,7 +182,8 @@ public class MainPage extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jLabel3)
-                    .addComponent(jButton6))
+                    .addComponent(jButton6)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -237,17 +247,27 @@ public class MainPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                if(op==null)
+                Options opst=WordBuilder.getOptions();
+                if(opst==null)
         {
-             op = new Options();
+             opst = new Options();
         }
-        op.setVisible(true);
+        opst.setVisible(true);
             }
         });
         
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        WordBuilder.setCurrentUser(null);
+      //  WordBuilder.getMainpage().dispose();
+       // BackGround.exitBG();
+       
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      *
@@ -259,11 +279,18 @@ public class MainPage extends javax.swing.JFrame {
         try {
             WordNetDatabase database = WordNetDatabase.getFileInstance();
             Synset[] synset = database.getSynsets(inputword,null,false);
+            
+            
             Synset[] synsetNoun = database.getSynsets(inputword, SynsetType.NOUN,false);
+            
             Synset[] synsetAdj = database.getSynsets(inputword, SynsetType.ADJECTIVE,false);
+            
             Synset[] synsetAdjsat = database.getSynsets(inputword, SynsetType.ADJECTIVE_SATELLITE,false);
+            
             Synset[] synsetAdv = database.getSynsets(inputword, SynsetType.ADVERB,false);
+            
             Synset[] synsetVerb = database.getSynsets(inputword, SynsetType.VERB,false);
+            
             boolean isValidword = false;
             int y = 0;
             ArrayList<String> testcompare = new ArrayList();
@@ -331,8 +358,7 @@ public class MainPage extends javax.swing.JFrame {
 
 
                 }
-
-                if (synsetAdjsat.length > 0) {
+                  if (synsetAdjsat.length > 0) {
                     for (int i = 0; i < synsetAdjsat.length; i++) {
                         y++;
                         jTextArea1.append(" " + y + ". " + synsetAdjsat[i].getDefinition() + "\n \n");
@@ -359,7 +385,45 @@ public class MainPage extends javax.swing.JFrame {
 
                     }
                 }
+
+           
             }
+            else
+            {
+                
+            
+                 if (synsetAdjsat.length > 0) {
+                      isValidword = true;
+                jTextArea1.append("  " + inputword + " ~ ADJECTIVE \n \n");
+                    for (int i = 0; i < synsetAdjsat.length; i++) {
+                        y=i+1;
+                        jTextArea1.append(" " + y + ". " + synsetAdjsat[i].getDefinition() + "\n \n");
+                        String[] wordForms = synsetAdjsat[i].getWordForms();
+                        for (int j = 0; j < wordForms.length; j++) {
+                            if (!wordForms[j].equals(inputword)) {
+                                if (!testcompare.contains(wordForms[j])) {
+                                    jTextArea2.append(wordForms[j] + "\n \n");
+                                    testcompare.add(wordForms[j]);
+                                }
+                            }
+                        }
+
+                        WordSense[] antiwordForms = synsetAdjsat[i].getAntonyms(inputword);
+                        for (int k = 0; k < antiwordForms.length; k++) {
+                            if (!anticompare.contains(antiwordForms[k].getWordForm())) {
+                                jTextArea3.append(antiwordForms[k].getWordForm() + " \n \n");
+                                anticompare.add(antiwordForms[k].getWordForm());
+
+                            }
+                        }
+
+
+
+                    }
+                }
+            }
+            
+            
             if (synsetVerb.length > 0) {
                 isValidword = true;
                 jTextArea1.append("  " + inputword + " ~ VERB \n \n");
@@ -472,12 +536,13 @@ public class MainPage extends javax.swing.JFrame {
     */
 
  
-    private Options op;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
