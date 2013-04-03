@@ -82,6 +82,7 @@ public class Notify extends JFrame {
             frame.setLocation(scrSize.width - frame.getWidth() - frame.getWidth() / 2, scrSize.height - toolHeight.bottom - frame.getHeight() - frame.getHeight() / 2);
             frame.setAlwaysOnTop(true);
             System.out.println("creation");
+            
             showVis(input);
             
             }

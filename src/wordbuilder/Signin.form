@@ -36,7 +36,7 @@
                       <Component id="jLabel2" min="-2" pref="75" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="password" pref="204" max="32767" attributes="0"/>
+                          <Component id="password" max="32767" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="login" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -97,6 +97,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="min 2 chars max 15"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="forgot">
       <Properties>
