@@ -51,23 +51,7 @@ public class WordBuilder {
         Notify.showNotification(input);
         MainPage.main(args);
         */
-<<<<<<< HEAD
 
-
-
-/*
- * Chandra's code....to be added later (removed for testing
-        BackGround a = new BackGround();
-  */
-
-        //Database speed increased.....
-        DatabaseOperations.init();
-
-        Signin frame=new Signin();
-         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-=======
                 new Thread() 
                 {
                 @Override
@@ -89,7 +73,7 @@ public class WordBuilder {
        ab.setVisible(true);
        bi = new BaseIcon();
         Options op = new Options();
->>>>>>> word_cravip
+
      
        
     }
