@@ -96,15 +96,40 @@ public class ApiFetch {
     /**
      *
      * @param input Word for which three level Hypernyms are to be obtained
-     * @return Arraylist contains all three level Hypernyms. First entry
-     * contains Either "N:" or "V:" representing noun or verb, next entry 
-     * contains number of wordforms in Level 1 Hypernym and corresponding wordsforms are followed, same 
-     * thing is repeated for Level 2 and Level 3.If first entry is 
-     * for Noun and if verb hypernyms are present then  Verb entries followed.
+     * @return Arraylist contains all three level Hypernyms and words similar to word 
+     * searched. It contains data in following order: Similar words, NoundHypernym Level 1,2,3
+     * words and Verb Hypernym 1,2,3 words.
      */
     public static ArrayList<String> getHypernym(String input) {
         initInstance();
         ArrayList<String> al2 = new ArrayList();
+        Synset [] synadj = database.getSynsets(input, SynsetType.ADJECTIVE, false);
+        if(synadj.length >0)
+        {
+        
+        AdjectiveSynset synadj1 = (AdjectiveSynset) synadj[0];
+        AdjectiveSynset [] synadjarr = synadj1.getSimilar();
+        if(synadjarr.length > 0)
+        {
+            for(int j=0;j<synadjarr.length;j++)
+            {
+                
+            
+             String[] simwords = synadjarr[j].getWordForms();
+                if (simwords.length > 0) // if there is noun hypernym of the given word present 
+                {
+
+                ///    al2.add(String.valueOf(hypernymwordsL1.length));
+                    for (int i = 0; i < simwords.length; i++) {
+                        al2.add(simwords[i]);
+                    }
+
+                }
+        }
+        }
+        
+    }
+        
         Synset[] synset = database.getSynsets(input, SynsetType.NOUN,false);
         if (synset.length > 0) {
             
