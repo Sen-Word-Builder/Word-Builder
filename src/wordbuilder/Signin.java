@@ -37,9 +37,9 @@ public class Signin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
-        login = new javax.swing.JToggleButton();
         forgot = new javax.swing.JButton();
         create = new javax.swing.JButton();
+        login = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SignIn");
@@ -52,13 +52,6 @@ public class Signin extends javax.swing.JFrame {
 
         password.setToolTipText("min 2 chars max 15");
 
-        login.setText("Login");
-        login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
-            }
-        });
-
         forgot.setText("Forgot Password");
         forgot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +63,13 @@ public class Signin extends javax.swing.JFrame {
         create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createActionPerformed(evt);
+            }
+        });
+
+        login.setText("Login");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
             }
         });
 
@@ -88,15 +88,14 @@ public class Signin extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(password)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(forgot)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(login)
-                                    .addComponent(create))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(81, Short.MAX_VALUE))
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(forgot)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(create))))))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,9 +108,9 @@ public class Signin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(login)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(forgot)
                     .addComponent(create))
@@ -121,26 +120,50 @@ public class Signin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void forgotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotActionPerformed
+        // TODO add your handling code here:
+        WordBuilder.signin.setVisible(false);
+        WordBuilder.forgotpassword.secques.setVisible(false);
+        WordBuilder.forgotpassword.secans.setVisible(false);
+        WordBuilder.forgotpassword.questionlabel.setVisible(false);
+        WordBuilder.forgotpassword.answer.setVisible(false);
+        WordBuilder.forgotpassword.check.setVisible(false);
+        WordBuilder.forgotpassword.enter.setVisible(true);
+        WordBuilder.forgotpassword.username.setVisible(true);
+        WordBuilder.forgotpassword.username.setEditable(true);
+        WordBuilder.forgotpassword.username.setText(null);
+        WordBuilder.forgotpassword.answer.setText(null);
+        WordBuilder.forgotpassword.setVisible(true);
+        
+    }//GEN-LAST:event_forgotActionPerformed
+
+    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
+        // TODO add your handling code here:
+        WordBuilder.signin.setVisible(false);
+       WordBuilder.signup.setVisible(true);
+      
+    }//GEN-LAST:event_createActionPerformed
+
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
         boolean cond1=true;
         boolean cond2=true;
         boolean cond=false;
         ArrayList<String> list;
-        
+
         String user=this.username.getText();
         String pass=this.password.getText();
- 
+
         if(user.length()>=2 && user.length()<=15)
-        { 
+        {
             cond1=true;
         }else{
             cond1=false;
             JOptionPane.showMessageDialog(this, "Check Username Character Length", "Error", JOptionPane.ERROR_MESSAGE);
         }
         if(pass.length()>=2 && pass.length()<=15)
-        { 
-           cond2=true;
+        {
+            cond2=true;
         }else{
             cond2=false;
             JOptionPane.showMessageDialog(this, "Check Password Character Length", "Error", JOptionPane.ERROR_MESSAGE);
@@ -158,31 +181,24 @@ public class Signin extends javax.swing.JFrame {
         }
         if(cond){
             System.out.println("Lets go forward Login Successful");
+
+            /*
+            MainPage frame=new MainPage();
+            WordBuilder.currentU=user;
+            this.setVisible(false);
+            frame.setVisible(true);
+            * */
+            WordBuilder.signin.setVisible(false);
+            WordBuilder.mainpage.setVisible(true);
             
-        MainPage frame=new MainPage();
-        WordBuilder.setCurrentUser(user);
-        this.setVisible(false);
-        BaseIcon bi = new BaseIcon();
-        frame.setVisible(true);
+
+
         }
         else{
             JOptionPane.showMessageDialog(this, "Invalid Login", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_loginActionPerformed
-
-    private void forgotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        ForgotPassword frame=new ForgotPassword();
-        frame.setVisible(true);
-    }//GEN-LAST:event_forgotActionPerformed
-
-    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        Signup frame=new Signup();
-        frame.setVisible(true);
-    }//GEN-LAST:event_createActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +239,7 @@ public class Signin extends javax.swing.JFrame {
     private javax.swing.JButton forgot;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JToggleButton login;
+    private javax.swing.JButton login;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

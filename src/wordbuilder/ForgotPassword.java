@@ -37,8 +37,8 @@ public class ForgotPassword extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         enter = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        secques = new javax.swing.JLabel();
+        secans = new javax.swing.JLabel();
         answer = new javax.swing.JTextField();
         check = new javax.swing.JButton();
         questionlabel = new javax.swing.JLabel();
@@ -62,9 +62,9 @@ public class ForgotPassword extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Security Question");
+        secques.setText("Security Question");
 
-        jLabel3.setText("Security Answer");
+        secans.setText("Security Answer");
 
         answer.setToolTipText("min 2 chars 20 max");
 
@@ -87,8 +87,8 @@ public class ForgotPassword extends javax.swing.JFrame {
                     .addComponent(check)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
+                            .addComponent(secans)
+                            .addComponent(secques)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -109,19 +109,19 @@ public class ForgotPassword extends javax.swing.JFrame {
                     .addComponent(enter))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(secques)
                     .addComponent(questionlabel))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(secans)
                     .addComponent(answer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(check)
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
-        jLabel2.setVisible(false);
-        jLabel3.setVisible(false);
+        secques.setVisible(false);
+        secans.setVisible(false);
         answer.setVisible(false);
         check.setVisible(false);
         questionlabel.setVisible(false);
@@ -132,7 +132,7 @@ public class ForgotPassword extends javax.swing.JFrame {
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
         // TODO add your handling code here:
        //  DatabaseOperations d= new DatabaseOperations();
-              ArrayList<String> list=new ArrayList<>();
+              ArrayList<String> list=new ArrayList<String>();
               String pass,ques,ans,answ;
         String user=this.username.getText();
         
@@ -150,14 +150,14 @@ public class ForgotPassword extends javax.swing.JFrame {
                ans=list.get(2);
               if(pass.length()>=2 && ques.length()>=2 && ans.length()>=2){
                   
-        jLabel2.setVisible(true);
-        answer.setVisible(true);
-        jLabel3.setVisible(true);
-        questionlabel.setText(ques);
-        questionlabel.setVisible(true);
-        check.setVisible(true);
-        this.username.setEditable(false);
-        enter.setVisible(false);
+        WordBuilder.forgotpassword.secques.setVisible(true);
+        WordBuilder.forgotpassword.answer.setVisible(true);
+        WordBuilder.forgotpassword.secans.setVisible(true);
+        WordBuilder.forgotpassword.questionlabel.setText(ques);
+        WordBuilder.forgotpassword.questionlabel.setVisible(true);
+        WordBuilder.forgotpassword.check.setVisible(true);
+        WordBuilder.forgotpassword.username.setEditable(false);
+        WordBuilder.forgotpassword.enter.setVisible(false);
               }
               
           } catch (SQLException ex) {
@@ -182,16 +182,16 @@ public class ForgotPassword extends javax.swing.JFrame {
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
-          ArrayList<String> list=new ArrayList<>();
+          ArrayList<String> list=new ArrayList<String>();
               String pass,ques,ans,answ;
         
      //   DatabaseOperations d=new DatabaseOperations();
                 System.out.println("check");
                 boolean  cond2=false;
                 String user;
-                user=this.username.getText();
+                user=WordBuilder.forgotpassword.username.getText();
                 try {
-                    answ=this.answer.getText();
+                    answ=WordBuilder.forgotpassword.answer.getText();
                      list=DatabaseOperations.recoverPassword(user);
                    pass=list.get(0);
                    ques=list.get(1);
@@ -199,6 +199,9 @@ public class ForgotPassword extends javax.swing.JFrame {
                   
                     if(answ.equals(ans)){
                         cond2=true;
+                        JOptionPane.showMessageDialog(this, "Your password is "+pass, "Password", JOptionPane.INFORMATION_MESSAGE);
+                         WordBuilder.forgotpassword.setVisible(false);
+                WordBuilder.signin.setVisible(true);
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(ForgotPassword.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,7 +209,7 @@ public class ForgotPassword extends javax.swing.JFrame {
                     Logger.getLogger(ForgotPassword.class.getName()).log(Level.SEVERE, null, ex);
                 }
             if(cond2){
-                System.out.println("Lets go forward");
+               
             }
     }//GEN-LAST:event_checkActionPerformed
 
@@ -249,13 +252,13 @@ public class ForgotPassword extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField answer;
-    private javax.swing.JButton check;
-    private javax.swing.JButton enter;
+    static javax.swing.JTextField answer;
+    static javax.swing.JButton check;
+    public static javax.swing.JButton enter;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel questionlabel;
-    private javax.swing.JTextField username;
+    public static javax.swing.JLabel questionlabel;
+    static javax.swing.JLabel secans;
+    public static javax.swing.JLabel secques;
+    public static javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

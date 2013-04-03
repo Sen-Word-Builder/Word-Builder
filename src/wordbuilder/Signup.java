@@ -41,10 +41,10 @@ public class Signup extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         answer = new javax.swing.JTextField();
-        create = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
         question = new javax.swing.JTextField();
+        create = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SignUp");
@@ -68,13 +68,6 @@ public class Signup extends javax.swing.JFrame {
 
         answer.setToolTipText("min 2 chars 20 max");
 
-        create.setText("Create");
-        create.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Name");
 
         name.setToolTipText("min 2 chars max 30");
@@ -83,6 +76,13 @@ public class Signup extends javax.swing.JFrame {
         question.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questionActionPerformed(evt);
+            }
+        });
+
+        create.setText("Create");
+        create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createActionPerformed(evt);
             }
         });
 
@@ -153,7 +153,7 @@ public class Signup extends javax.swing.JFrame {
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         // TODO add your handling code here:
-        String name = this.name.getText();
+          String name = this.name.getText();
         String user = this.username.getText();
         String pass = this.password.getText();
         String ques = this.question.getText();
@@ -256,7 +256,7 @@ public class Signup extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField answer;
-    private javax.swing.JToggleButton create;
+    private javax.swing.JButton create;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

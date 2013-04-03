@@ -82,7 +82,7 @@ public class DatabaseOperations {
     public static ArrayList<String> recoverPassword(String uid) throws SQLException, ClassNotFoundException {
     //    db_con = createConnection();
 
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<String>();
 
         Statement stmt = db_con.createStatement();
 
@@ -165,6 +165,48 @@ public class DatabaseOperations {
         return word;
     }
 
+    
+    //checked and working
+    public static String getRandomWordFromAll() throws SQLException{
+          String word = "";
+        int count = 0;
+     //   db_con = createConnection();
+        Statement stmt = db_con.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT * from words ");
+               
+
+        while (rs.next()) {
+            count++;
+        }
+        //  System.out.println("count"+count);
+
+        if (count == 0) {
+            db_con.close();
+            return null;
+        }
+
+        int random = 1 + (int) (Math.random() * count);
+
+        //   System.out.println("random"+random);
+
+        rs = stmt.executeQuery("SELECT word from words");
+
+
+
+        int i = 1;
+        while (rs.next()) {
+            if (random == i) {
+                word = rs.getString("word");
+            }
+            i++;
+        }
+        //   System.out.println(word);
+
+     //   db_con.close();
+        return word;
+    }
+    
     //very carefully checked and working absolutely fine
     public static void updateHasSearched(ArrayList<String> list) throws SQLException, ClassNotFoundException {
         String uid = list.get(0);

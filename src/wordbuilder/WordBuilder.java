@@ -20,6 +20,11 @@ import java.util.TreeSet;
  */
 public class WordBuilder {
 
+    static Signin signin=new Signin();
+    static Signup signup=new Signup();
+    static ForgotPassword forgotpassword=new ForgotPassword();
+    static MainPage mainpage=new MainPage();
+    
     /**
      * @param args the command line arguments
      */
@@ -52,30 +57,23 @@ public class WordBuilder {
         MainPage.main(args);
         */
 
-                new Thread() 
-                {
-                @Override
-                public void run() {
-                    try {
-                        BackGround a = new BackGround();
-                    } catch (Exception e) {
-                    }
-                }
+
+/*
+ * Chandra's code....to be added later (removed for testing
+        BackGround a = new BackGround();
+  */
+
+        //Database speed increased.....
         
-                }
-                        .start();
-                
-                
-                
-        //Signin in = new Signin();
-        //in.setVisible(true);
-        ab = new MainPage();
-       ab.setVisible(true);
-       bi = new BaseIcon();
-        Options op = new Options();
+        /*
+        DatabaseOperations.init();
+
 
      
-       
+       */
+        
+        DatabaseOperations.init();
+        WordBuilder.signin.setVisible(true);
     }
     
     
