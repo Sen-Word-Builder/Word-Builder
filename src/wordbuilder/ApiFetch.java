@@ -33,7 +33,7 @@ public class ApiFetch {
             System.out.println(wordForm);
             //  Get the synsets containing the wORd form
             database = WordNetDatabase.getFileInstance();
-            Synset[] synsets = database.getSynsets(wordForm, SynsetType.NOUN);
+            Synset[] synsets = database.getSynsets(wordForm, SynsetType.NOUN,false);
             System.out.println(synsets);
 
             //  Display the word forms and definitions for synsets retrieved
@@ -103,7 +103,7 @@ public class ApiFetch {
     public static ArrayList<String> getHypernym(String input) {
         initInstance();
         ArrayList<String> al2 = new ArrayList();
-        Synset[] synset = database.getSynsets(input, SynsetType.NOUN);
+        Synset[] synset = database.getSynsets(input, SynsetType.NOUN,false);
         if (synset.length > 0) {
             NounSynset ns1 = (NounSynset) synset[0];                         // Top most synset in noun synsets.
             NounSynset[] nsL1 = ns1.getHypernyms();
@@ -155,15 +155,15 @@ public class ApiFetch {
     /**
      *
      * @param uid The user who has searched the word
-     * @param word The word to be serached
-     * @param why Purpose of searching the word viz, q or s
+     * @param word The word to be searched
+     * @param why Purpose of searching the word viz, "q" or "s"
      * @return String Arraylist will contain meaning of the word and all the
      * wordforms present in the synset.
      */
     public static ArrayList<String> getMeaning(String uid, String word, String why) throws SQLException, ClassNotFoundException {
         initInstance();
         ArrayList<String> al1 = new ArrayList<>();
-        Synset[] synset = database.getSynsets(word);
+        Synset[] synset = database.getSynsets(word,null,false);
        
         int index = 0;
         if (synset.length > 0) {
@@ -181,8 +181,6 @@ public class ApiFetch {
              senddata.add(word);
              senddata.add(String.valueOf(synset[ApiFetch.getMaxFrequency(word)].getTagCount(word)));
              DatabaseOperations.updateHasSearched(senddata);
-             
-             
              }
         }
       
@@ -198,15 +196,22 @@ public class ApiFetch {
     public static int getMaxFrequency(String inputword)
     {
         initInstance();
-        Synset[] synset = database.getSynsets(inputword);
+        System.out.println("word to be searched in max frequency count" + inputword);
+        Synset[] synset = database.getSynsets(inputword,null,false);
+        
+        
         int[] frequency = new int[synset.length];
         int max = -1;
         int index = 0;
         int Maxindex =-1;
+        
+       
         if (synset.length > 0) {
+            
             for (int i = 0; i < synset.length; i++) {
 
                 frequency[i] = synset[i].getTagCount(inputword);
+                
 
             }
             for (int j = 0; j < synset.length; j++) {
@@ -231,7 +236,7 @@ public class ApiFetch {
     public static ArrayList<String> getHyponym(String input) {
         initInstance();
         ArrayList<String> al3 = new ArrayList();
-        Synset[] synset = database.getSynsets(input, SynsetType.NOUN);
+        Synset[] synset = database.getSynsets(input, SynsetType.NOUN,false);
         if (synset.length > 0) {
             NounSynset ns1 = (NounSynset) synset[0];                         // Top most synset in noun synsets.
             NounSynset[] nsL1 = ns1.getHyponyms();

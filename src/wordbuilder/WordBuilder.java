@@ -4,11 +4,12 @@
  */
 package wordbuilder;
 
+
 import database.DatabaseOperations;
 import java.io.File;
+
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -56,6 +57,7 @@ public class WordBuilder {
         MainPage.main(args);
         */
 
+
 /*
  * Chandra's code....to be added later (removed for testing
         BackGround a = new BackGround();
@@ -66,15 +68,14 @@ public class WordBuilder {
         /*
         DatabaseOperations.init();
 
-        Signin frame=new Signin();
-         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+
      
        */
         
         DatabaseOperations.init();
         WordBuilder.signin.setVisible(true);
     }
+    
     
     public static String getCurrentUser()
     {
@@ -84,6 +85,13 @@ public class WordBuilder {
     {
         currentU = user;
     }
+    public static MainPage getMainpage()
+    {
+        return ab;
+    }
     
-    public  static String currentU;
+    private static String currentU;
+    private static MainPage ab;
+    private static BaseIcon bi ;
+    
 }

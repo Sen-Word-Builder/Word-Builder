@@ -191,6 +191,8 @@ public class Signin extends javax.swing.JFrame {
             WordBuilder.signin.setVisible(false);
             WordBuilder.mainpage.setVisible(true);
             
+
+
         }
         else{
             JOptionPane.showMessageDialog(this, "Invalid Login", "Error", JOptionPane.ERROR_MESSAGE);
