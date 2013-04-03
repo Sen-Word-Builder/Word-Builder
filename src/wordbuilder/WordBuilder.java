@@ -5,14 +5,12 @@
 package wordbuilder;
 
 
-import database.DatabaseOperations;
-import java.io.File;
+
+import database.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -44,37 +42,9 @@ public class WordBuilder {
       //  System.out.println(getCurrentUser());
        // PopUp a =new PopUp();
         
-        
-     /*   Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        //a.show(input);
-        Notify.showNotification(input);
-        MainPage.main(args);
-        */
+      
 
-                new Thread() 
-                {
-                @Override
-                public void run() {
-                    try {
-                        BackGround a = new BackGround();
-                    } catch (Exception e) {
-                    }
-                }
-        
-                }
-                        .start();
-                
-                
-                
-        //Signin in = new Signin();
-        //in.setVisible(true);
-        ab = new MainPage();
-       ab.setVisible(true);
-       bi = new BaseIcon();
-        Options op = new Options();
 
-     
        
     }
     
@@ -89,11 +59,44 @@ public class WordBuilder {
     }
     public static MainPage getMainpage()
     {
-        return ab;
+        return mp;
+    }
+    public static BackGround getBackGround()
+    {
+        return bg;
+    }
+    public static Signin getSignin()
+    {
+        return si;
+    }
+    public static Signup getSignup(){
+        return su;
+    }
+    public static DatabaseOperations getDatabaseOperations()
+    {
+        return dbo;
+    }
+    public static BaseIcon getBaseIcon()
+    {
+        return bi;
+    }
+    public static Notify getNotify()
+    {
+        return nt;
+    }
+    public static Options getOptions()
+    {
+        return ops;
     }
     
+    private static Signin si;
+    private static Signup su;
+    private static DatabaseOperations dbo;
+    private static DatabaseOperationsTest dbot;
     private static String currentU;
-    private static MainPage ab;
+    private static MainPage mp;
     private static BaseIcon bi ;
-    
+    private static BackGround bg;
+    private static Notify nt;
+    private static Options ops;
 }
