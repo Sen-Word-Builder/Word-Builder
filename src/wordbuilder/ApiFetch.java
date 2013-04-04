@@ -30,11 +30,11 @@ public class ApiFetch {
             Scanner in = new Scanner(System.in);
             String wordForm = in.nextLine();
             WordSense[] test = new WordSense[1];
-            System.out.println(wordForm);
+           // System.out.println(wordForm);
             //  Get the synsets containing the wORd form
             database = WordNetDatabase.getFileInstance();
             Synset[] synsets = database.getSynsets(wordForm, SynsetType.NOUN,false);
-            System.out.println(synsets);
+           // System.out.println(synsets);
 
             //  Display the word forms and definitions for synsets retrieved
             //    System.out.println(synsets.length);
@@ -97,7 +97,7 @@ public class ApiFetch {
      *
      * @param input Word for which three level Hypernyms are to be obtained
      * @return Arraylist contains all three level Hypernyms and words similar to word 
-     * searched. It contains data in following order: Similar words, NoundHypernym Level 1,2,3
+     * searched. It contains data in following order if present: Similar words, NoundHypernym Level 1,2,3
      * words and Verb Hypernym 1,2,3 words.
      */
     public static ArrayList<String> getHypernym(String input) {
@@ -267,7 +267,7 @@ public class ApiFetch {
     public static int getMaxFrequency(String inputword)
     {
         initInstance();
-        System.out.println("word to be searched in max frequency count" + inputword);
+       
         Synset[] synset = database.getSynsets(inputword,null,false);
         
         

@@ -50,7 +50,7 @@ public class BackGround implements NativeKeyListener {
             
             JPanel jp = new JPanel();
             jp.setVisible(true);
-            System.out.println(" till here");
+          
             
         } catch (NativeHookException  ex) {
             Logger.getLogger(BackGround.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,16 +77,16 @@ public class BackGround implements NativeKeyListener {
                 if(nke.getKeyCode() == keySpressed)
                 {
                     
-                System.out.println("Short cut pressed");
+               
                 try {
                     String data = (String) Toolkit.getDefaultToolkit()
                             .getSystemClipboard().getData(DataFlavor.stringFlavor);
-                    System.out.println(" word for searching" + data);
+                  
                     ArrayList<String> tempget = ApiFetch.getMeaning(WordBuilder.getCurrentUser(), data, "s");
                     
                     if(tempget.size()>0)
                     {
-                        System.out.println(tempget.get(0));
+                       
                         Notify.showNotification(tempget.get(0));
                        // System.out.println("Notificaiton called: After calling");
                     }
@@ -137,7 +137,7 @@ public class BackGround implements NativeKeyListener {
     public static void readFile()
     {
          try {
-             new File("hello").getAbsolutePath();
+           
              File fopen =  new File("wordnet/data/short.txt");
              fopen.createNewFile();
              
@@ -156,7 +156,7 @@ public class BackGround implements NativeKeyListener {
                     BackGround.writeToFile(17,73);
                     break;
                 } else {
-                    System.out.println(line);
+                 
                     String [] a = line.split(":");
                     BackGround.setkeys(Integer.parseInt(a[0]),Integer.parseInt(a[1]));
                 }

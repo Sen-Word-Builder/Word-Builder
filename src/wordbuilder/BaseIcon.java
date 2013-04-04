@@ -163,7 +163,7 @@ public class BaseIcon  {
     protected static Image createImage(String path, String description) {
         URL imageURL = BaseIcon.class.getClassLoader().getResource(path);
         
-        System.out.println(imageURL);
+        
          
         if (imageURL == null) {
             System.err.println("Resource not found: " + path);
