@@ -81,28 +81,24 @@ public class Notify extends JFrame {
             Insets toolHeight = Toolkit.getDefaultToolkit().getScreenInsets(frame.getGraphicsConfiguration());// height of the task bar
             frame.setLocation(scrSize.width - frame.getWidth() - frame.getWidth() / 2, scrSize.height - toolHeight.bottom - frame.getHeight() - frame.getHeight() / 2);
             frame.setAlwaysOnTop(true);
-           // System.out.println("creation");
-            
+            //  System.out.println("creation");
+
             showVis(input);
-            
-            }
-            
-          else
-        {
+
+        } else {
             showVis(input);
         }
 
     }
 
     private static void showVis(String input) {
-        
 
-            if(Notify.getNotify())
-            {
-              //  System.out.println("I am here");
-            
+
+        if (Notify.getNotify()) {
+            //  System.out.println("I am here");
+
             header = "Hi " + WordBuilder.getCurrentUser();
-            
+
             if (!input.equals("")) {
                 message = input;
             } else {
@@ -110,34 +106,35 @@ public class Notify extends JFrame {
             }
             headingLabel.setText(header);
             messageLabel.setText("<HTML>" + message);
-            
-            
-            if(frame.isVisible()== false)
-            {
+
+
+            if (frame.isVisible() == false) {
                 frame.setVisible(true);
             }
-            
 
-            if(frame.isVisible() && !threadisRunning )
-            {
-                
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                       // System.out.println("Thread Executed");
-                        threadisRunning = true;
-                        Thread.sleep(5000);                                     // time after which pop up will be disappeared.
-                        frame.setVisible(false);
-                        threadisRunning = false;
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+
+            if (frame.isVisible() && !threadisRunning) {
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            //   System.out.println("Thread Executed");
+                            threadisRunning = true;
+                            Thread.sleep(5000);                                     // time after which pop up will be disappeared.
+                            frame.setVisible(false);
+                            threadisRunning = false;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            ;
-        }  
-                            
-            .start(); 
+                ;
+            }
+
+        
+    
+
+    .start(); 
             }
 
             //  System.out.println( Thread.activeCount());
@@ -152,22 +149,17 @@ public class Notify extends JFrame {
     }
   
     
-    public static void unSetNotify()
-    {
-        isNotify =false;
+    public static void unSetNotify() {
+        isNotify = false;
     }
-    
-    public static void setNotify()
-    {
+
+    public static void setNotify() {
         isNotify = true;
     }
-    
-    public static boolean getNotify()
-    {
+
+    public static boolean getNotify() {
         return isNotify;
     }
-    
-    
     //private JButton closebutton;
     static String message;
     static String header;
