@@ -81,8 +81,9 @@ public class BackGround implements NativeKeyListener {
                 try {
                     String data = (String) Toolkit.getDefaultToolkit()
                             .getSystemClipboard().getData(DataFlavor.stringFlavor);
+                    String datainput = data.trim();
                   
-                    ArrayList<String> tempget = ApiFetch.getMeaning(WordBuilder.getCurrentUser(), data, "s");
+                    ArrayList<String> tempget = ApiFetch.getMeaning(WordBuilder.getCurrentUser(), datainput, "s");
                     
                     if(tempget.size()>0)
                     {

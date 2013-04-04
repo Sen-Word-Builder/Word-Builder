@@ -81,7 +81,7 @@ public class Notify extends JFrame {
             Insets toolHeight = Toolkit.getDefaultToolkit().getScreenInsets(frame.getGraphicsConfiguration());// height of the task bar
             frame.setLocation(scrSize.width - frame.getWidth() - frame.getWidth() / 2, scrSize.height - toolHeight.bottom - frame.getHeight() - frame.getHeight() / 2);
             frame.setAlwaysOnTop(true);
-            System.out.println("creation");
+           // System.out.println("creation");
             
             showVis(input);
             
@@ -99,7 +99,7 @@ public class Notify extends JFrame {
 
             if(Notify.getNotify())
             {
-                System.out.println("I am here");
+              //  System.out.println("I am here");
             
             header = "Hi " + WordBuilder.getCurrentUser();
             
@@ -125,7 +125,7 @@ public class Notify extends JFrame {
                 @Override
                 public void run() {
                     try {
-                        System.out.println("Thread Executed");
+                       // System.out.println("Thread Executed");
                         threadisRunning = true;
                         Thread.sleep(5000);                                     // time after which pop up will be disappeared.
                         frame.setVisible(false);
