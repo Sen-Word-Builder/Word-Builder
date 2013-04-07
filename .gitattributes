@@ -9,3 +9,5 @@ src/wordbuilder/ForgotPassword.form eol=lf
 src/wordbuilder/Signin.form eol=lf
 src/wordbuilder/*.form eol=lf
 src/wordbuilder/Options.java eol=lf
+src/wordbuilder/History.java eol=lf
+src/wordbuilder/History.from eol=lf

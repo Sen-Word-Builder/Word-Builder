@@ -4,6 +4,8 @@
  */
 package wordbuilder;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -34,6 +36,7 @@ public class Options extends javax.swing.JFrame {
      
      addWindowListener(winadap);
      jButton1.setText(BackGround.getCurrentKey());
+     this.setLocation(scrSize.width - (scrSize.width)/2 - (this.getWidth())/2 ,scrSize.height -(scrSize.height)/2 - (this.getHeight())/2 );
      
     }
 
@@ -54,6 +57,7 @@ public class Options extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Options");
+        setResizable(false);
 
         jLabel1.setText("Global LookUp Key");
 
@@ -150,7 +154,7 @@ public class Options extends javax.swing.JFrame {
      */
  
     private WindowAdapter winadap ;
-    
+    private Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
