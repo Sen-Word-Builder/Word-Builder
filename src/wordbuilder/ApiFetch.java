@@ -17,70 +17,7 @@ import java.util.Scanner;
  */
 public class ApiFetch {
 
-    public static void main(String[] args) {
-        if (true) {
-            //  Concatenate the command-line arguments
-            StringBuffer buffer = new StringBuffer();
-            /*for (int i = 0; i < args.length; i++)
-             {
-             buffer.append((i > 0 ? " " : "") + args[i]);
-             }*/
-
-            //	String wordForm = buffer.toString();
-            Scanner in = new Scanner(System.in);
-            String wordForm = in.nextLine();
-            WordSense[] test = new WordSense[1];
-           // System.out.println(wordForm);
-            //  Get the synsets containing the wORd form
-            database = WordNetDatabase.getFileInstance();
-            Synset[] synsets = database.getSynsets(wordForm, SynsetType.NOUN,false);
-           // System.out.println(synsets);
-
-            //  Display the word forms and definitions for synsets retrieved
-            //    System.out.println(synsets.length);
-            if (synsets.length > 0) {
-                System.out.println("The following synsets contain '"
-                        + wordForm + "' or a possible base form "
-                        + "of that text:");
-                for (int i = 0; i < synsets.length; i++) {
-                    System.out.println("");
-                    System.out.println(synsets[i]);                             // total synsets
-                    //   System.out.println("frequency " + synsets[i].getTagCount(wordForm));
-                    String[] wordForms = synsets[i].getWordForms();             // all wordforms in a particular synset
-                    NounSynset ns1 = (NounSynset) synsets[i];
-                    NounSynset[] ns2 = ns1.getHypernyms();
-                    int f = ns2.length;
-                    while (f > 0) {
-                        f--;
-                        System.out.println("nounsynset are " + ns2[f]);
-
-
-
-                    }
-
-
-                    //         System.out.println(wordForms.length);
-                    //System.out.println(synsets[i].getTagCount("kick"));
-                    //	test = synsets[i].getAntonyms("left");
-                    //if (test[0] != null)
-                    //System.out.println(test[0]);
-                    for (int j = 0; j < wordForms.length; j++) {
-                        //System.out.print((j > 0 ? ", " : "") +
-                        //	System.out.print(wordForms[j]);
-                    }
-                    //System.out.println(": " + synsets[i].getDefinition());
-                    break;
-                }
-            } else {
-                System.err.println("No synsets exist that contain "
-                        + "the word form '" + wordForm + "'");
-            }
-
-        } else {
-            System.err.println("You must specify "
-                    + "a word form for which to retrieve synsets.");
-        }
-    }
+    
 
     /**
      * Initialise instance for wordnet database search.
