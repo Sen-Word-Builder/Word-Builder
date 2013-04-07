@@ -83,5 +83,7 @@ public class DatabaseOperationsTest {
         
         
         System.out.println(DatabaseOperations.getRandomWordFromAll());
+        
+        System.out.println(DatabaseOperations.getLastQuizData("trial0"));
     }
 }
