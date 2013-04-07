@@ -182,7 +182,7 @@ public class ApiFetch {
                 al1.add(wordForms[j]);
             }
             
-            if (why.equals("s") && (uid!=null))                                        
+            if (why.equals("s") && (uid!=null) && !(uid.equals("")) && !(uid.equals(" ")))                                        
              {
              ArrayList<String> senddata = new ArrayList();
              senddata.add(uid);
