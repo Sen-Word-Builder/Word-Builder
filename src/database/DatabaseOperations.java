@@ -135,7 +135,6 @@ public class DatabaseOperations {
         //  System.out.println("count"+count);
 
         if (count == 0) {
-            db_con.close();
             return null;
         }
 
@@ -178,7 +177,6 @@ public class DatabaseOperations {
         //  System.out.println("count"+count);
 
         if (count == 0) {
-            db_con.close();
             return null;
         }
 
