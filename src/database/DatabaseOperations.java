@@ -39,21 +39,17 @@ public class DatabaseOperations {
     public static  boolean createUser(String name, String uid, String pass, String ques, String answer) throws SQLException, ClassNotFoundException {
 
       //  db_con = createConnection();
-         Statement stmt = db_con.createStatement();
+    Statement stmt = db_con.createStatement();
         //   stmt.executeUpdate("set search_path to " + search_path + ";");
 
         ResultSet rs = stmt.executeQuery("SELECT user_id from user_details "
                 + "where user_id='" + uid + "'");
 
         if (rs.next()) {
-            db_con.close();
-
             return false;
-        } else {
+        } else {  
             stmt.executeUpdate("insert into user_details values ('" + uid + "','" + name + "','" + pass + "','" + ques
                     + "','" + answer + "','" + new Date(System.currentTimeMillis()) + "')");
-
-          //  db_con.close();
             return true;
         }
 
