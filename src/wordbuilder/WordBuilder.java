@@ -7,6 +7,8 @@ package wordbuilder;
 
 
 import database.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,6 +26,16 @@ public class WordBuilder {
     static Signup signup=new Signup();
     static ForgotPassword forgotpassword=new ForgotPassword();
     static MainPage mainpage=new MainPage();
+    static Dimension scrsize;
+    
+    
+    public static void init() throws SQLException, ClassNotFoundException{
+        DatabaseOperations.init();
+         scrsize = Toolkit.getDefaultToolkit().getScreenSize();// size of the screen
+          signin.setLocation(scrsize.width - (scrsize.width*3)/4  ,scrsize.height -(scrsize.height*3)/4  );
+          signup.setLocation(scrsize.width - (scrsize.width*3)/4  ,scrsize.height -(scrsize.height*3)/4  );
+          forgotpassword.setLocation(scrsize.width - (scrsize.width*3)/4  ,scrsize.height -(scrsize.height*3)/4  );
+    }
     
     /**
      * @param args the command line arguments
@@ -38,10 +50,11 @@ public class WordBuilder {
      //   a+="/WordBuilder.jar/wordnet/dict/";
       //  System.setProperty("wordnet.database.dir", a);
   
-        DatabaseOperations.init();
+        init();
+       // DatabaseOperations.init();
         WordBuilder.signin.setVisible(true);
-       
-        
+           
+      
 
     }
     
