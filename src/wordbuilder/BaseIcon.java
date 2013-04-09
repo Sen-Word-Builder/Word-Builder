@@ -17,9 +17,11 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.jfree.ui.RefineryUtilities;
 
 /**
  *
@@ -113,13 +115,15 @@ public class BaseIcon  {
             }
         });
          
-       /* aboutItem.addActionListener(new ActionListener() {
+        showAnalysis.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,
-                        "This dialog box is run from the About menu item");
+             QuizAnalysis demo = new QuizAnalysis("Quiz Analysis");
+        demo.pack();
+        RefineryUtilities.centerFrameOnScreen(demo);
+        demo.setVisible(true);
             }
         });
-        */ 
+         
          
         cb1.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
