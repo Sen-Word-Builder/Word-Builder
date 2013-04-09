@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author snooze-wake
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({wordbuilder.SignupTest.class, wordbuilder.WordBuilderTest.class, wordbuilder.QuizTest.class, wordbuilder.SigninTest.class, wordbuilder.ApiFetchTest.class, wordbuilder.ForgotPasswordTest.class})
+@Suite.SuiteClasses({ wordbuilder.WordBuilderTest.class,  wordbuilder.ApiFetchTest.class})
 public class WordbuilderSuite {
 
     @BeforeClass
