@@ -32,9 +32,9 @@ public class WordBuilder {
     public static void init() throws SQLException, ClassNotFoundException{
         DatabaseOperations.init();
          scrsize = Toolkit.getDefaultToolkit().getScreenSize();// size of the screen
-          signin.setLocation(scrsize.width - (scrsize.width*3)/4  ,scrsize.height -(scrsize.height*3)/4  );
-          signup.setLocation(scrsize.width - (scrsize.width*3)/4  ,scrsize.height -(scrsize.height*3)/4  );
-          forgotpassword.setLocation(scrsize.width - (scrsize.width*3)/4  ,scrsize.height -(scrsize.height*3)/4  );
+          signin.setLocation(scrsize.width - (scrsize.width*1)/2 - signin.getWidth()/2  ,scrsize.height -(scrsize.height*1)/2 - signin.getHeight()/2 );
+          signup.setLocation(scrsize.width - (scrsize.width*1)/2 -signup.getWidth()/2 ,scrsize.height -(scrsize.height*1)/2 -signup.getHeight()/2 );
+          forgotpassword.setLocation(scrsize.width - (scrsize.width*1)/2 - forgotpassword.getWidth()/2 ,scrsize.height -(scrsize.height*1)/2 -forgotpassword.getHeight()/2 );
     }
     
     /**
