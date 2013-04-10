@@ -39,17 +39,21 @@ public class DatabaseOperations {
     public static  boolean createUser(String name, String uid, String pass, String ques, String answer) throws SQLException, ClassNotFoundException {
 
       //  db_con = createConnection();
-    Statement stmt = db_con.createStatement();
+         Statement stmt = db_con.createStatement();
         //   stmt.executeUpdate("set search_path to " + search_path + ";");
 
         ResultSet rs = stmt.executeQuery("SELECT user_id from user_details "
                 + "where user_id='" + uid + "'");
 
         if (rs.next()) {
+           // db_con.close();
+
             return false;
-        } else {  
+        } else {
             stmt.executeUpdate("insert into user_details values ('" + uid + "','" + name + "','" + pass + "','" + ques
                     + "','" + answer + "','" + new Date(System.currentTimeMillis()) + "')");
+
+          //  db_con.close();
             return true;
         }
 
@@ -119,6 +123,8 @@ public class DatabaseOperations {
         return dates;
     }
     //checked and working
+    
+    
 
     public static String getRandomWord(String uid) throws SQLException, ClassNotFoundException {
         String word = "";
@@ -135,6 +141,7 @@ public class DatabaseOperations {
         //  System.out.println("count"+count);
 
         if (count == 0) {
+           // db_con.close();
             return null;
         }
 
@@ -161,6 +168,38 @@ public class DatabaseOperations {
     }
 
     
+    //checked and working fine
+    public static ArrayList<String> getWordsRetention(String uid) throws SQLException{
+            Statement stmt = db_con.createStatement();
+
+            ArrayList<String> list=new ArrayList<String>();
+            
+        ResultSet rs = stmt.executeQuery("select word,last_searched from has_searched where user_id='"
+                + uid+"' order by last_searched desc ");
+     while (rs.next()) {
+            list.add(rs.getString("word"));
+            list.add(rs.getString("last_searched"));
+        }
+        
+     return list;
+    }
+    
+   public static ArrayList<String> getWordsWidth() throws SQLException{
+            Statement stmt = db_con.createStatement();
+
+            ArrayList<String> list=new ArrayList<String>();
+            
+        ResultSet rs = stmt.executeQuery("select word,frequency from words order by frequency desc ");
+     while (rs.next()) {
+            list.add(rs.getString("word"));
+            list.add(rs.getString("frequency"));
+        }
+        
+     return list;
+    }
+    
+    
+    
     //checked and working
     public static String getRandomWordFromAll() throws SQLException{
           String word = "";
@@ -177,6 +216,7 @@ public class DatabaseOperations {
         //  System.out.println("count"+count);
 
         if (count == 0) {
+           // db_con.close();
             return null;
         }
 
@@ -459,38 +499,6 @@ public class DatabaseOperations {
       //  db_con.close();
         return list;
     }
-     
-     //checked and working
-     public static ArrayList<Integer> getLastQuizData(String uid) throws SQLException{
-         Statement stmt = db_con.createStatement();
-         ArrayList<Integer> list=new ArrayList<Integer>();
-
-         ResultSet rs = stmt.executeQuery("SELECT quiz_id from quiz "
-                + "where user_id='" + uid + "'");
-
-         int score_ret=0;
-         int score_wid=0;
-         int score_dep=0;
-         
-         int quiz=0;
-         
-        while (rs.next()) {
-            quiz++;
-        }
-        rs=stmt.executeQuery("select score_in_width,score_in_retention,score_in_depth  from quiz where user_id='"
-                +uid+ "' and quiz_id="+quiz);
-         while (rs.next()) {
-             score_ret=rs.getInt("score_in_retention");
-             score_wid=rs.getInt("score_in_width");
-             score_dep=rs.getInt("score_in_depth");
-         }
-         list.add(score_ret);
-         list.add(score_wid);
-         list.add(score_dep);
-        
-         return list;
-     }
-   
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseOperations d = new DatabaseOperations();
