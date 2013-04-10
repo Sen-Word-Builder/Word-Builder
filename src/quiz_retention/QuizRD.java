@@ -51,6 +51,8 @@ public class QuizRD extends javax.swing.JFrame {
     public  ArrayList<String> answered = new ArrayList<String>();
     public  ArrayList<String> answers = new ArrayList<String>();
 
+    
+    
     public  Timer time;
     
     public  int time_remaining=900;
@@ -200,7 +202,10 @@ public class QuizRD extends javax.swing.JFrame {
 time=new Timer(1000,new TimerListener());
 time.start();
     
+        System.out.println(DatabaseOperations.getWordsRetention(WordBuilder.getCurrentUser()));
+        System.out.println("count is "+count);
         disp_retention = count / no_of_questions;
+        System.out.println("disp_ret "+disp_retention);
         // System.out.println(count);
         words_width_list = DatabaseOperations.getWordsWidth();
         disp_width = (DatabaseOperations.getWordsWidth().size() / 2) / no_of_questions;
@@ -211,7 +216,7 @@ time.start();
             words_retention_list = DatabaseOperations.getWordsRetention(WordBuilder.getCurrentUser());
             generateRetentionQuiz();
         } else {
-            JOptionPane.showMessageDialog(this, "You have to search atleast 15 words to take the quiz", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "You have to search atleast 15 words to take the quiz", "Sorry "+WordBuilder.getCurrentUser(), JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
             WordBuilder.mainpage.setVisible(true);
         }
@@ -523,12 +528,12 @@ time.start();
       //      System.out.println("j depth "+ j_depth);
             if (counter_depth == 0) {
                 while (true) {
-                  //  if(j_depth==0)
-                    //word="government";
-                    //else
+                    if(j_depth==0)
+                  word="mat";
+                    else
                     word = DatabaseOperations.getRandomWordFromAll();
                     
-                    if( ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").size()<3 );
+                    //if( ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").size()<3 );
                     
                     if (words_asked.contains(word) ); 
                     else {
@@ -632,6 +637,10 @@ time.start();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel1 = new java.awt.Panel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
         quesno = new javax.swing.JLabel();
         score = new javax.swing.JLabel();
         userlabel = new javax.swing.JLabel();
@@ -643,23 +652,40 @@ time.start();
         answer = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         next = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quiz");
 
+        quesno.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         quesno.setText("Q");
 
+        score.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         score.setText("Score: ");
 
+        userlabel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         userlabel.setText("Hello ");
 
-        question.setEditable(false);
         question.setColumns(20);
         question.setRows(5);
         question.setWrapStyleWord(true);
         jScrollPane1.setViewportView(question);
         question.setLineWrap(true);
 
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Hint");
 
         answer.addActionListener(new java.awt.event.ActionListener() {
@@ -668,8 +694,10 @@ time.start();
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel7.setText("Ans");
 
+        next.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         next.setText("Next");
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -677,14 +705,13 @@ time.start();
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setText("Timer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(next)
-                .addGap(119, 119, 119))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -709,8 +736,13 @@ time.start();
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(score, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(timerlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(timerlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
                                 .addGap(53, 53, 53))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(next)
+                .addGap(119, 119, 119))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -719,10 +751,11 @@ time.start();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(score)
                     .addComponent(userlabel))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(timerlabel)
-                    .addComponent(quesno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(quesno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -733,7 +766,7 @@ time.start();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(answer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(next)
                 .addGap(31, 31, 31))
         );
@@ -800,10 +833,15 @@ time.start();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField answer;
     private javax.swing.JLabel hint;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton next;
+    private java.awt.Panel panel1;
     private javax.swing.JLabel quesno;
     private javax.swing.JTextArea question;
     private javax.swing.JLabel score;

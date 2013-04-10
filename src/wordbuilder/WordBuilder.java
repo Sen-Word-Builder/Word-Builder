@@ -7,6 +7,7 @@ package wordbuilder;
 
 
 import database.*;
+import java.awt.Font;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,6 +25,9 @@ public class WordBuilder {
    public  static Signup signup=new Signup();
   public   static ForgotPassword forgotpassword=new ForgotPassword();
    public  static MainPage mainpage=new MainPage();
+   public  static  Font font = new Font("Cambria", Font.BOLD, 12);
+   
+   
 //    static Quiz quiz=new Quiz();
     /**
      * @param args the command line arguments
@@ -32,7 +36,7 @@ public class WordBuilder {
         // TODO code application logic here
       //  Properties props = System.getProperties();
      //  props.setProperty("wordnet.database.dir", "wordnet/dict"); 
-        System.setProperty("wordnet.database.dir","wordnet/dict");
+        System.setProperty("wordnet.database.dir","wordnet/dict");mainpage.setFont(font);
        //System.setProperty("wordnet.database.dir", "C:/Program Files (x86)/WordNet/2.1/dict");
    //     String a = System.getProperty("user.dir");
      //   a+="/WordBuilder.jar/wordnet/dict/";
@@ -72,7 +76,7 @@ public class WordBuilder {
                 }
                         .start();
                 
-      //          quiz.setVisible(true);
+      //        quiz.setVisible(true);
                 
         //Signin in = new Signin();
         //in.setVisible(true);
@@ -83,16 +87,16 @@ public class WordBuilder {
 
      
 
-  
-        DatabaseOperations.init();
-      //  WordBuilder.signin.setVisible(true);
+  WordBuilder.setCurrentUser("vaibhav");
       
-        WordBuilder.setCurrentUser("vaibhav");
+        DatabaseOperations.init();
+     //  WordBuilder.signin.setVisible(true);
+      
+        
         QuizRD quiz=new QuizRD();
       quiz.setVisible(true);
       quiz.startQuiz();
       
-
     }
     
     
