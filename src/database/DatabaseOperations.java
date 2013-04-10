@@ -500,6 +500,37 @@ public class DatabaseOperations {
         return list;
     }
 
+     //checked and working
+     public static ArrayList<Integer> getLastQuizData(String uid) throws SQLException{
+         Statement stmt = db_con.createStatement();
+         ArrayList<Integer> list=new ArrayList<Integer>();
+
+         ResultSet rs = stmt.executeQuery("SELECT quiz_id from quiz "
+                + "where user_id='" + uid + "'");
+
+         int score_ret=0;
+         int score_wid=0;
+         int score_dep=0;
+         
+         int quiz=0;
+         
+        while (rs.next()) {
+            quiz++;
+        }
+        rs=stmt.executeQuery("select score_in_width,score_in_retention,score_in_depth  from quiz where user_id='"
+                +uid+ "' and quiz_id="+quiz);
+         while (rs.next()) {
+             score_ret=rs.getInt("score_in_retention");
+             score_wid=rs.getInt("score_in_width");
+             score_dep=rs.getInt("score_in_depth");
+         }
+         list.add(score_ret);
+         list.add(score_wid);
+         list.add(score_dep);
+        
+         return list;
+     }
+     
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseOperations d = new DatabaseOperations();
         System.out.println(d.returnDate("trial0", "abc"));
