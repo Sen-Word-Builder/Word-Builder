@@ -5,11 +5,14 @@
 package quiz_retention;
 
 import database.DatabaseOperations;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.midi.Soundbank;
+import javax.swing.Timer;
 import wordbuilder.ApiFetch;
 import wordbuilder.WordBuilder;
 
@@ -47,6 +50,42 @@ public class QuizRD extends javax.swing.JFrame {
     public static ArrayList<String> answered = new ArrayList<String>();
     public static ArrayList<String> answers = new ArrayList<String>();
 
+    public static Timer time;
+    
+    public static int time_remaining=900;
+
+    private void finishQuiz() throws SQLException, ClassNotFoundException {
+        DatabaseOperations.storeQuizData("vaibhav", score_retention, score_width, score_depth);
+        
+            System.out.println("quiz is finished");
+    }
+    
+    class TimerListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            time_remaining--;
+            if(time_remaining>0)
+            QuizRD.timerlabel.setText(getTime(time_remaining));
+            else try {
+                finishQuiz();
+            } catch (SQLException ex) {
+                Logger.getLogger(QuizRD.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(QuizRD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        private String getTime(int time_remaining) {
+            int min=time_remaining/60;
+            int sec=time_remaining%60;
+            String ret=""+min+":"+sec;
+            return ret;
+        }
+        
+    }
+    
+    
     public boolean checkAnswer(String word_asked, String answered) throws SQLException, ClassNotFoundException {
 
         /*
@@ -112,6 +151,9 @@ public class QuizRD extends javax.swing.JFrame {
         } else if (words_asked.size() == 3 * no_of_questions) {
             score_depth=quiz_score-(score_width+score_retention);
             System.out.println("depth "+score_depth);
+            
+            finishQuiz();
+            
    //         System.out.println("depth score "+score_depth);
             //show analysis
             for (int i = 0; i < questions_asked.size(); i++) {
@@ -127,7 +169,9 @@ public class QuizRD extends javax.swing.JFrame {
 
     public void startQuiz() throws SQLException, ClassNotFoundException {
         int count = DatabaseOperations.showHistory("vaibhav").size();
-
+time=new Timer(1000,new TimerListener());
+time.start();
+    
         disp_retention = count / no_of_questions;
         // System.out.println(count);
         words_width_list = DatabaseOperations.getWordsWidth();
@@ -568,7 +612,7 @@ public class QuizRD extends javax.swing.JFrame {
         quesno = new javax.swing.JLabel();
         score = new javax.swing.JLabel();
         userlabel = new javax.swing.JLabel();
-        timer = new javax.swing.JLabel();
+        timerlabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         question = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
@@ -577,7 +621,7 @@ public class QuizRD extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         next = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         quesno.setText("Q");
 
@@ -585,7 +629,7 @@ public class QuizRD extends javax.swing.JFrame {
 
         userlabel.setText("Hello ");
 
-        timer.setText("Timer:");
+        timerlabel.setText("Timer:");
 
         question.setEditable(false);
         question.setColumns(20);
@@ -595,8 +639,6 @@ public class QuizRD extends javax.swing.JFrame {
         question.setLineWrap(true);
 
         jLabel5.setText("Hint");
-
-        hint.setText("jLabel6");
 
         answer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -639,13 +681,13 @@ public class QuizRD extends javax.swing.JFrame {
                                     .addComponent(hint, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userlabel)
-                                    .addComponent(quesno, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(userlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(quesno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(score, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(timer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(timerlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(53, 53, 53))))))
         );
         layout.setVerticalGroup(
@@ -657,7 +699,7 @@ public class QuizRD extends javax.swing.JFrame {
                     .addComponent(userlabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timer)
+                    .addComponent(timerlabel)
                     .addComponent(quesno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -743,7 +785,7 @@ public class QuizRD extends javax.swing.JFrame {
     private javax.swing.JLabel quesno;
     private javax.swing.JTextArea question;
     private javax.swing.JLabel score;
-    private javax.swing.JLabel timer;
+    public static javax.swing.JLabel timerlabel;
     private javax.swing.JLabel userlabel;
     // End of variables declaration//GEN-END:variables
 }
