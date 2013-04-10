@@ -55,6 +55,7 @@ public class QuizRD extends javax.swing.JFrame {
     public static int time_remaining=900;
 
     private void finishQuiz() throws SQLException, ClassNotFoundException {
+        time.stop();
         DatabaseOperations.storeQuizData("vaibhav", score_retention, score_width, score_depth);
         
             System.out.println("quiz is finished");
@@ -118,6 +119,25 @@ public class QuizRD extends javax.swing.JFrame {
             //return false;
         }
 
+        //**************************************Score generation
+        
+       if (words_asked.size() > 0 && words_asked.size() <= no_of_questions) {
+            score_retention=quiz_score;
+       }
+       else if(words_asked.size() > no_of_questions && words_asked.size() <= 2 * no_of_questions) {
+            score_width=quiz_score-score_retention;
+       }
+       else if (words_asked.size() > 2 * no_of_questions && words_asked.size() <= 3 * no_of_questions){
+            score_depth=quiz_score-(score_width+score_retention);
+       }
+       
+        
+        
+        
+        
+        //*********************************************
+        
+        
         //loading new questions per section
 
         if (words_asked.size() >= 0 && words_asked.size() < no_of_questions) {
@@ -130,7 +150,7 @@ public class QuizRD extends javax.swing.JFrame {
            
             if (words_asked.size() == no_of_questions) {
                 c = 0;
-                score_retention=quiz_score;
+            //    score_retention=quiz_score;
                 System.out.println("ret"+score_retention);
                 
            //     System.out.println(" Retention score "+score_retention);
@@ -142,14 +162,15 @@ public class QuizRD extends javax.swing.JFrame {
            // System.out.println("width " + j_width);
         } else if (words_asked.size() >= 2 * no_of_questions && words_asked.size() < 3 * no_of_questions) {
 
-            if(words_asked.size() == 2 * no_of_questions) {score_width=quiz_score-score_retention;
+            if(words_asked.size() == 2 * no_of_questions) {
+                //score_width=quiz_score-score_retention;
             
                 System.out.println("width score "+score_width);
             }
             generateDepthQuiz();
             j_depth++;
         } else if (words_asked.size() == 3 * no_of_questions) {
-            score_depth=quiz_score-(score_width+score_retention);
+          //  score_depth=quiz_score-(score_width+score_retention);
             System.out.println("depth "+score_depth);
             
             finishQuiz();
