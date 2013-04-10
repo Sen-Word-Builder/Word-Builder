@@ -55,6 +55,7 @@ public class QuizRD extends javax.swing.JFrame {
     public static int time_remaining=900;
 
     private void finishQuiz() throws SQLException, ClassNotFoundException {
+        System.out.println("we have finished quiz");
         time.stop();
         DatabaseOperations.storeQuizData("vaibhav", score_retention, score_width, score_depth);
         
@@ -478,11 +479,11 @@ time.start();
     }
 
     public void generateDepthQuiz() throws SQLException, ClassNotFoundException {
-        this.question.setText("Q:" + (questions_asked.size() + 1));
+        this.question.setText(null);
+        this.quesno.setText("Q:" + (questions_asked.size() + 1));
         this.answer.setText(null);
         this.score.setText("score " + quiz_score);
 
-        this.question.setText(null);
         //System.out.println("depth quiz");
         ArrayList<String> ques = new ArrayList<String>();
         int i;
@@ -643,6 +644,7 @@ time.start();
         next = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quiz");
 
         quesno.setText("Q");
 
