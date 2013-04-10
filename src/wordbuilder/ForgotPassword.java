@@ -5,6 +5,8 @@
 package wordbuilder;
 
 import database.DatabaseOperations;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ public class ForgotPassword extends javax.swing.JFrame {
      */
     public ForgotPassword() {
         initComponents();
+         this.setLocation(scrSize.width - (scrSize.width)/2 - (this.getWidth())/2 ,scrSize.height -(scrSize.height*1)/2 - (this.getHeight())/2  );
     }
 
        
@@ -252,6 +255,7 @@ public class ForgotPassword extends javax.swing.JFrame {
             }
         });
     }
+    private Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     static javax.swing.JTextField answer;
     static javax.swing.JButton check;

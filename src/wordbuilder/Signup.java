@@ -5,6 +5,8 @@
 package wordbuilder;
 
 import database.DatabaseOperations;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ public class Signup extends javax.swing.JFrame {
     public Signup() {
 
         initComponents();
+         this.setLocation(scrSize.width - (scrSize.width)/2 - (this.getWidth())/2 ,scrSize.height -(scrSize.height*1)/2 - (this.getHeight())/2  );
     }
 
     /**
@@ -227,9 +230,8 @@ public class Signup extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_createActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    private Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField answer;
