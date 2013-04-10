@@ -111,13 +111,15 @@ public class Notify extends JFrame {
             String empty = "  " ;
             if (!input.equals("")) {
                 message = input;
+                messageLabel.setText("<HTML>" + message);
                 messageLabel.setForeground(Color.WHITE);
             } else {
                 message = "No Such Word Found";
+                messageLabel.setText("<HTML>" + message);
                 messageLabel.setForeground(Color.WHITE);
             }
             headingLabel.setText(header);
-            messageLabel.setText("<HTML>" + message);
+            
             headingLabel.setForeground(Color.WHITE);
 
             if (frame.isVisible() == false) {

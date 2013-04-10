@@ -172,7 +172,7 @@ public class ApiFetch {
         initInstance();
         ArrayList<String> al1 = new ArrayList<>();
         Synset[] synset = database.getSynsets(word,null,false);
-       
+        String actualW=word;
         int index = 0;
         if (synset.length > 0) {
             index = ApiFetch.getMaxFrequency(word);
@@ -180,13 +180,18 @@ public class ApiFetch {
             String[] wordForms = synset[index].getWordForms();
             for (int j = 0; j < wordForms.length; j++) {
                 al1.add(wordForms[j]);
+                if(wordForms[j].equalsIgnoreCase(word))
+                {
+                    actualW=wordForms[j];
+                    
+                }
             }
             
             if (why.equals("s") && (uid!=null) && !(uid.equals("")) && !(uid.equals(" ")))                                        
              {
              ArrayList<String> senddata = new ArrayList();
              senddata.add(uid);
-             senddata.add(word);
+             senddata.add(actualW);
              senddata.add(String.valueOf(synset[ApiFetch.getMaxFrequency(word)].getTagCount(word)));
              DatabaseOperations.updateHasSearched(senddata);
              }
