@@ -24,7 +24,7 @@ public class ShowAnalysis extends javax.swing.JFrame {
         this.ques=q;
         this.ans=a;
         initComponents();
-        
+        jTextArea1.setText(null);
         showQuiz();
     }
 
