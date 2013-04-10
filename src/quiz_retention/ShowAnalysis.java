@@ -4,6 +4,8 @@
  */
 package quiz_retention;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import org.jfree.ui.RefineryUtilities;
 import wordbuilder.QuizAnalysis;
@@ -26,10 +28,12 @@ public class ShowAnalysis extends javax.swing.JFrame {
         initComponents();
         jTextArea1.setText(null);
         showQuiz();
+        this.setLocation(scrSize.width - (scrSize.width)/2 - (this.getWidth())/2 ,scrSize.height -(scrSize.height*1)/2 - (this.getHeight())/2  );
     }
 
     private ShowAnalysis() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     
@@ -47,6 +51,7 @@ public class ShowAnalysis extends javax.swing.JFrame {
         analysis = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
@@ -148,4 +153,5 @@ public class ShowAnalysis extends javax.swing.JFrame {
         jTextArea1.setText(str);
         jTextArea1.setCaretPosition(0);
     }
+    private Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
 }

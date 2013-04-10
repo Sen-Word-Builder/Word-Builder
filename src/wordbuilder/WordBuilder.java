@@ -7,35 +7,48 @@ package wordbuilder;
 
 
 import database.*;
+
 import java.awt.Font;
+
+import java.awt.SplashScreen;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import quiz_retention.QuizRD;
+
 /**
  *
  * @author Mohit
  */
 public class WordBuilder {
 
+
    public  static Signin signin=new Signin();
    public  static Signup signup=new Signup();
   public   static ForgotPassword forgotpassword=new ForgotPassword();
    public  static MainPage mainpage=new MainPage();
+
    public  static  Font font = new Font("Cambria", Font.BOLD, 12);
    
    
+
 //    static Quiz quiz=new Quiz();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-        // TODO code application logic here
-      //  Properties props = System.getProperties();
+       
+        loadingMethod();
+        
+        if (loadingScreen != null) {
+            loadingScreen.close();
+        }
      //  props.setProperty("wordnet.database.dir", "wordnet/dict"); 
+
         System.setProperty("wordnet.database.dir","wordnet/dict");mainpage.setFont(font);
        //System.setProperty("wordnet.database.dir", "C:/Program Files (x86)/WordNet/2.1/dict");
    //     String a = System.getProperty("user.dir");
@@ -54,15 +67,8 @@ public class WordBuilder {
       //  System.out.println(getCurrentUser());
        // PopUp a =new PopUp();
         
+
         
-     /*   Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        //a.show(input);
-        Notify.showNotification(input);
-        MainPage.main(args);
-        */
-
-
                 new Thread() 
                 {
                 @Override
@@ -82,20 +88,20 @@ public class WordBuilder {
         //in.setVisible(true);
      //   ab = new MainPage();
       // ab.setVisible(true);
-       bi = new BaseIcon();
+    //   bi = new BaseIcon();
         Options op = new Options();
 
      
-
-  WordBuilder.setCurrentUser("vaibhav");
       
         DatabaseOperations.init();
-     //  WordBuilder.signin.setVisible(true);
-      
+
+        WordBuilder.signin.setVisible(true);
+    
         
-        QuizRD quiz=new QuizRD();
+      /*  QuizRD quiz=new QuizRD();
+
       quiz.setVisible(true);
-      quiz.startQuiz();
+      quiz.startQuiz(); */
       
     }
     
@@ -109,7 +115,22 @@ public class WordBuilder {
         currentU = user;
     }
     
-    
+     public static void loadingMethod() {
+        loadingScreen = SplashScreen.getSplashScreen();
+        if (loadingScreen !=null){
+            try {
+                Thread.sleep(5000);
+                // if there are any problems displaying the splash this will be null
+            } catch (InterruptedException ex) {
+               
+            }
+            
+            
+            
+            
+        }
+    }
+    public static SplashScreen loadingScreen;
     private static String currentU;
     public static BaseIcon bi ;
     public static BackGround bg;

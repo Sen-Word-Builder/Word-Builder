@@ -111,7 +111,7 @@ public class QuizAnalysis extends JFrame {
         
         dataset.addValue(scoreLR, series1, category1);
         dataset.addValue(scoreLD, series1, category2);
-        dataset.addValue(scoreLW, series1, category3);
+        dataset.addValue(scoreLW, series1, category3); 
         
 
         dataset.addValue(scoreR, series2, category1);

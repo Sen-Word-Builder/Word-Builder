@@ -5,16 +5,22 @@
 package quiz_retention;
 
 import database.DatabaseOperations;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.midi.Soundbank;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import wordbuilder.ApiFetch;
+import wordbuilder.BackGround;
 import wordbuilder.WordBuilder;
 
 /**
@@ -620,11 +626,31 @@ time.start();
 
     }
 
+    WindowAdapter windowadapter;
     /**
      * Creates new form QuizRD
      */
     public QuizRD() {
         initComponents();
+        this.setLocation(scrSize.width - (scrSize.width)/2 - (this.getWidth())/2 ,scrSize.height -(scrSize.height*1)/2 - (this.getHeight())/2  );
+        
+         windowadapter = new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent we)
+            {
+                
+                
+                BackGround.exitBG();
+        
+        System.exit(0);
+                //System.out.println("hello world");
+                //System.exit(0);
+            }
+        };
+     
+     
+     addWindowListener(windowadapter);
+        
 
     }
 
@@ -669,6 +695,7 @@ time.start();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quiz");
+        setResizable(false);
 
         quesno.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         quesno.setText("Q");
@@ -794,6 +821,7 @@ time.start();
 
     private void answerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerActionPerformed
         // TODO add your handling code here:
+        this.next.doClick();
     }//GEN-LAST:event_answerActionPerformed
 
     /**
@@ -830,6 +858,7 @@ time.start();
             }
         });
     }
+    Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField answer;
     private javax.swing.JLabel hint;
