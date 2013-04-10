@@ -11,3 +11,5 @@ src/wordbuilder/*.form eol=lf
 src/wordbuilder/Options.java eol=lf
 src/wordbuilder/History.java eol=lf
 src/wordbuilder/History.from eol=lf
+src/quiz_retention/QuizRD.java eol=lf
+src/quiz_retention/QuizRD.form eol=lf

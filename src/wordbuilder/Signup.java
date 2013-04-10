@@ -48,6 +48,7 @@ public class Signup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SignUp");
+        setResizable(false);
 
         jLabel1.setText("Username");
 

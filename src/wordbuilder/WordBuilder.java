@@ -7,15 +7,13 @@ package wordbuilder;
 
 
 import database.*;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import quiz_retention.QuizRD;
 /**
  *
  * @author Mohit
@@ -26,17 +24,7 @@ public class WordBuilder {
     static Signup signup=new Signup();
     static ForgotPassword forgotpassword=new ForgotPassword();
     static MainPage mainpage=new MainPage();
-    static Dimension scrsize;
-    
-    
-    public static void init() throws SQLException, ClassNotFoundException{
-        DatabaseOperations.init();
-         scrsize = Toolkit.getDefaultToolkit().getScreenSize();// size of the screen
-          signin.setLocation(scrsize.width - (scrsize.width*1)/2 - signin.getWidth()/2  ,scrsize.height -(scrsize.height*1)/2 - signin.getHeight()/2 );
-          signup.setLocation(scrsize.width - (scrsize.width*1)/2 -signup.getWidth()/2 ,scrsize.height -(scrsize.height*1)/2 -signup.getHeight()/2 );
-          forgotpassword.setLocation(scrsize.width - (scrsize.width*1)/2 - forgotpassword.getWidth()/2 ,scrsize.height -(scrsize.height*1)/2 -forgotpassword.getHeight()/2 );
-    }
-    
+//    static Quiz quiz=new Quiz();
     /**
      * @param args the command line arguments
      */
@@ -49,11 +37,58 @@ public class WordBuilder {
    //     String a = System.getProperty("user.dir");
      //   a+="/WordBuilder.jar/wordnet/dict/";
       //  System.setProperty("wordnet.database.dir", a);
+
+        //ApiFetch.main(args);
+        //ApiFetch.getMeaning(" ","help","q");
+        //MainPage.main(args);
+        //ApiFetch.getHypernym("");
+        //ApiFetch.getHyponym("");
+        // MainPage.main(args);
+        // BaseIcon.set();
+       // PopUp.main(args);
+     //   Signup.main(args);
+      //  System.out.println(getCurrentUser());
+       // PopUp a =new PopUp();
+        
+        
+     /*   Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        //a.show(input);
+        Notify.showNotification(input);
+        MainPage.main(args);
+        */
+
+
+                new Thread() 
+                {
+                @Override
+                public void run() {
+                    try {
+                        BackGround a = new BackGround();
+                    } catch (Exception e) {
+                    }
+                }
+        
+                }
+                        .start();
+                
+      //          quiz.setVisible(true);
+                
+        //Signin in = new Signin();
+        //in.setVisible(true);
+     //   ab = new MainPage();
+      // ab.setVisible(true);
+       bi = new BaseIcon();
+        Options op = new Options();
+
+     
+
   
-        init();
-       // DatabaseOperations.init();
-        WordBuilder.signin.setVisible(true);
-           
+        DatabaseOperations.init();
+        //WordBuilder.signin.setVisible(true);
+      QuizRD quiz=new QuizRD();
+      quiz.setVisible(true);
+      quiz.startQuiz();
       
 
     }
