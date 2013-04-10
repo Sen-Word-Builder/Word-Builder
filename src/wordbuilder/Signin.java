@@ -191,13 +191,7 @@ public class Signin extends javax.swing.JFrame {
         if(cond){
             System.out.println("Lets go forward Login Successful");
 
-            /*
-            MainPage frame=new MainPage();
-            WordBuilder.currentU=user;
-            this.setVisible(false);
-            frame.setVisible(true);
-            * */
-            WordBuilder.signin.setVisible(false);
+           WordBuilder.signin.setVisible(false);
             WordBuilder.mainpage.setVisible(true);
             WordBuilder.setCurrentUser(this.username.getText());
             if(WordBuilder.bg==null)
@@ -208,11 +202,7 @@ public class Signin extends javax.swing.JFrame {
             {
                 WordBuilder.bi= new BaseIcon();
             }
-            
-            
-            
-
-
+        
         }
         else{
             JOptionPane.showMessageDialog(this, "Invalid Login", "Error", JOptionPane.ERROR_MESSAGE);
