@@ -52,14 +52,19 @@ public class QuizRD extends javax.swing.JFrame {
 
     public static Timer time;
     
-    public static int time_remaining=900;
+    public static int time_remaining=180;
 
     private void finishQuiz() throws SQLException, ClassNotFoundException {
         System.out.println("we have finished quiz");
         time.stop();
         DatabaseOperations.storeQuizData("vaibhav", score_retention, score_width, score_depth);
         
-            System.out.println("quiz is finished");
+        ShowAnalysis show=new ShowAnalysis(questions_asked, answers);
+        
+        
+        this.dispose();
+        show.setVisible(true);
+        System.out.println("quiz is finished");
     }
     
     class TimerListener implements ActionListener{
@@ -219,7 +224,7 @@ time.start();
     public void generateRetentionQuiz() throws SQLException, ClassNotFoundException {
         this.quesno.setText("Q:" + (questions_asked.size() + 1));
         this.answer.setText(null);
-        this.score.setText("score " + quiz_score);
+        this.score.setText("Score " + quiz_score);
 
         this.question.setText("");
         //  System.out.println("retention quiz");
@@ -256,8 +261,8 @@ time.start();
             //System.out.println("ques is "+ ApiFetch.getMeaning("vaibhav", list.get(c), "q"));
             // System.out.println("answer is ")+;
             ques = ApiFetch.getMeaning("vaibhav", word, "q");
-            this.question.append(ques.get(0));
-
+            this.question.setText(ques.get(0));
+            this.question.setCaretPosition(0);
             questions_asked.add(ques.get(0));
 
             answers.add(word);
@@ -316,7 +321,7 @@ time.start();
         this.quesno.setText("Q:" + (questions_asked.size() + 1));
 
         this.answer.setText(null);
-        this.score.setText("score " + quiz_score);
+        this.score.setText("Score " + quiz_score);
 
         this.question.setText("");
      //   System.out.println("width quiz");
@@ -354,8 +359,8 @@ time.start();
             //System.out.println("ques is "+ ApiFetch.getMeaning("vaibhav", list.get(c), "q"));
             // System.out.println("answer is ")+;
             ques = ApiFetch.getMeaning("vaibhav", word, "q");
-            this.question.append(ques.get(0));
-
+            this.question.setText(ques.get(0));
+            this.question.setCaretPosition(0);
             questions_asked.add(ques.get(0));
 
             answers.add(word);
@@ -482,7 +487,7 @@ time.start();
         this.question.setText(null);
         this.quesno.setText("Q:" + (questions_asked.size() + 1));
         this.answer.setText(null);
-        this.score.setText("score " + quiz_score);
+        this.score.setText("Score " + quiz_score);
 
         //System.out.println("depth quiz");
         ArrayList<String> ques = new ArrayList<String>();
@@ -651,8 +656,6 @@ time.start();
         score.setText("Score: ");
 
         userlabel.setText("Hello ");
-
-        timerlabel.setText("Timer:");
 
         question.setEditable(false);
         question.setColumns(20);
