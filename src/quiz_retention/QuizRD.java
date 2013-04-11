@@ -82,7 +82,7 @@ public class QuizRD extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent ae) {
             time_remaining--;
             if(time_remaining>0)
-            QuizRD.timerlabel.setText(getTime(time_remaining));
+            jLabel2.setText("Timer:"+getTime(time_remaining));
             else try {
                 finishQuiz();
             } catch (SQLException ex) {
@@ -95,7 +95,14 @@ public class QuizRD extends javax.swing.JFrame {
         private String getTime(int time_remaining) {
             int min=time_remaining/60;
             int sec=time_remaining%60;
-            String ret=""+min+":"+sec;
+            String temp="";
+            String ret;
+            if(sec<10){
+                temp="0"+sec;
+                ret=""+min+":"+temp;
+                return ret;
+            }
+             ret=""+min+":"+sec;
             return ret;
         }
         
@@ -204,6 +211,9 @@ public class QuizRD extends javax.swing.JFrame {
     }
 
     public void startQuiz() throws SQLException, ClassNotFoundException {
+        timerlabel.setVisible(false);
+        hint.setFont(new java.awt.Font("Calibri",1,14));
+        jLabel2.setText(null);
         int count = DatabaseOperations.showHistory(WordBuilder.getCurrentUser()).size();
 time=new Timer(1000,new TimerListener());
 time.start();
@@ -304,7 +314,7 @@ time.start();
         String temp2;
         temp2 = "" + temp;
         for (int i = 0; i < word.length() - 2; i++) {
-            temp2 += "^";
+            temp2 += "*";
         }
         temp2 += temp1;
         hintanswer = temp2;
@@ -404,7 +414,7 @@ time.start();
         String temp2;
         temp2 = "" + temp;
         for (int i = 0; i < word.length() - 2; i++) {
-            temp2 += "^";
+            temp2 += "*";
         }
         temp2 += temp1;
         hintanswer = temp2;
@@ -557,7 +567,7 @@ time.start();
 
                 hint_word = "" + word.charAt(0);
                 for (int k = 0; k < word.length() - 2; k++) {
-                    hint_word += "^";
+                    hint_word += "*";
                 }
                 hint_word += word.charAt(word.length() - 1);
 
@@ -594,7 +604,7 @@ time.start();
                         System.out.println("temp word "+temp_word);
                 hint_word = "" + temp_word.charAt(0);
                 for (int k = 0; k < temp_word.length() - 2; k++) {
-                    hint_word += "^";
+                    hint_word += "*";
                 }
                 hint_word += temp_word.charAt(temp_word.length() - 1);
 
@@ -706,6 +716,7 @@ time.start();
         userlabel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         userlabel.setText("Hello ");
 
+        question.setEditable(false);
         question.setColumns(20);
         question.setRows(5);
         question.setWrapStyleWord(true);
@@ -762,10 +773,15 @@ time.start();
                                     .addComponent(quesno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(score, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(timerlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(53, 53, 53))))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(score, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(68, 68, 68))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(timerlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(57, 57, 57))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46))))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(next)
