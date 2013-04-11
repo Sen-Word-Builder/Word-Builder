@@ -351,6 +351,7 @@ public class MainPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

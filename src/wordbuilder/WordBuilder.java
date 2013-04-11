@@ -7,58 +7,42 @@ package wordbuilder;
 
 
 import database.*;
+import java.awt.SplashScreen;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import quiz_retention.QuizRD;
+import static wordbuilder.Splash.loadingScreen;
 /**
  *
  * @author Mohit
  */
 public class WordBuilder {
 
+   
     static Signin signin=new Signin();
     static Signup signup=new Signup();
     static ForgotPassword forgotpassword=new ForgotPassword();
     static MainPage mainpage=new MainPage();
+    
 //    static Quiz quiz=new Quiz();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-        // TODO code application logic here
-      //  Properties props = System.getProperties();
+       
+        loadingMethod();
+        
+        if (loadingScreen != null) {
+            loadingScreen.close();
+        }
      //  props.setProperty("wordnet.database.dir", "wordnet/dict"); 
         System.setProperty("wordnet.database.dir","wordnet/dict");
-       //System.setProperty("wordnet.database.dir", "C:/Program Files (x86)/WordNet/2.1/dict");
-   //     String a = System.getProperty("user.dir");
-     //   a+="/WordBuilder.jar/wordnet/dict/";
-      //  System.setProperty("wordnet.database.dir", a);
-
-        //ApiFetch.main(args);
-        //ApiFetch.getMeaning(" ","help","q");
-        //MainPage.main(args);
-        //ApiFetch.getHypernym("");
-        //ApiFetch.getHyponym("");
-        // MainPage.main(args);
-        // BaseIcon.set();
-       // PopUp.main(args);
-     //   Signup.main(args);
-      //  System.out.println(getCurrentUser());
-       // PopUp a =new PopUp();
+       
         
-        
-     /*   Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        //a.show(input);
-        Notify.showNotification(input);
-        MainPage.main(args);
-        */
-
-
                 new Thread() 
                 {
                 @Override
@@ -78,17 +62,17 @@ public class WordBuilder {
         //in.setVisible(true);
      //   ab = new MainPage();
       // ab.setVisible(true);
-       bi = new BaseIcon();
+    //   bi = new BaseIcon();
         Options op = new Options();
 
      
 
   
         DatabaseOperations.init();
-        //WordBuilder.signin.setVisible(true);
-      QuizRD quiz=new QuizRD();
+        WordBuilder.signin.setVisible(true);
+     /* QuizRD quiz=new QuizRD();
       quiz.setVisible(true);
-      quiz.startQuiz();
+      quiz.startQuiz(); */
       
 
     }
@@ -103,6 +87,21 @@ public class WordBuilder {
         currentU = user;
     }
     
+     public static void loadingMethod() {
+        loadingScreen = SplashScreen.getSplashScreen();
+        if (loadingScreen !=null){
+            try {
+                Thread.sleep(5000);
+                // if there are any problems displaying the splash this will be null
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
+            
+        }
+    }
     
     private static String currentU;
     public static BaseIcon bi ;
