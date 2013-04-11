@@ -122,7 +122,7 @@ public class WordBuilder {
                 Thread.sleep(5000);
                 // if there are any problems displaying the splash this will be null
             } catch (InterruptedException ex) {
-                Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
+               
             }
             
             
