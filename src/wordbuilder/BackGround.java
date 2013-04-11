@@ -40,11 +40,9 @@ public class BackGround implements NativeKeyListener {
             GlobalScreen.getInstance().addNativeKeyListener(this);
 
 
-            //   GlobalScreen.getInstance().addNativeKeyListener(new GlobalKeyListenerExample());
+
             readFile();
 
-
-            //     wait1();
 
 
             JPanel jp = new JPanel();
@@ -61,10 +59,10 @@ public class BackGround implements NativeKeyListener {
     public void nativeKeyPressed(NativeKeyEvent nke) {
 
 
-        if (nke.getKeyCode() == keyFpressed) {
+      
+ if (nke.getKeyCode() == keyFpressed) {
             iskeyFpressed = true;
         }
-
 
 
         if (iskeyFpressed) {
@@ -72,7 +70,7 @@ public class BackGround implements NativeKeyListener {
                 tempkeyS = nke.getKeyCode();
                 if (nke.getKeyCode() == keySpressed) {
 
-
+                    //System.out.println("pressed");
                     try {
                         String data = (String) Toolkit.getDefaultToolkit()
                                 .getSystemClipboard().getData(DataFlavor.stringFlavor);
@@ -89,6 +87,7 @@ public class BackGround implements NativeKeyListener {
                                 public void run() {
                                     try {
                                         Notify.showNotification(finaldata);
+                                        //System.out.println("send for render");
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -104,6 +103,7 @@ public class BackGround implements NativeKeyListener {
                                 public void run() {
                                     try {
                                         Notify.showNotification("");
+                                       // System.out.println("send for null");
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -125,6 +125,7 @@ public class BackGround implements NativeKeyListener {
                 }
             }
         }
+         
 
     }
 

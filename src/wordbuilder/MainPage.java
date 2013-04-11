@@ -428,7 +428,7 @@ public class MainPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (Desktop.isDesktopSupported()) {
     try {
-        File myFile = new File("wordnet/data/help.pdf");
+        File myFile = new File("wordnet/data/User_Manual.pdf");
         Desktop.getDesktop().open(myFile);
     } catch (IOException ex) {
         // no application registered for PDFs
