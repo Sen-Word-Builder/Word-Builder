@@ -156,8 +156,8 @@ public class QuizAnalysis extends JFrame {
         plot.setRangeGridlinePaint(Color.white);
 
         // set the range axis to display integers only...
-        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+     /*   final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits()); */
 
         // disable bar outlines...
         final BarRenderer renderer = (BarRenderer) plot.getRenderer();

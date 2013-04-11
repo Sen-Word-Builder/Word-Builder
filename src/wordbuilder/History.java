@@ -93,7 +93,7 @@ public class History extends javax.swing.JFrame {
     public void displayHistory()
     {
         try {
-            
+            jTextArea1.setEditable(true);
             ArrayList<String> history = DatabaseOperations.getAllWordsSearched(WordBuilder.getCurrentUser());
             if(history.size()>0)
             {
@@ -107,6 +107,7 @@ public class History extends javax.swing.JFrame {
                 }
             }
             jTextArea1.setCaretPosition(0);
+            jTextArea1.setEditable(false);
             
         } catch (SQLException ex) {
             Logger.getLogger(History.class.getName()).log(Level.SEVERE, null, ex);

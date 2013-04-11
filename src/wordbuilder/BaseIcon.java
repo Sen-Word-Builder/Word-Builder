@@ -165,17 +165,7 @@ public class BaseIcon  {
         });
          
        
-   /*     cb2.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                int cb2Id = e.getStateChange();
-                if (cb2Id == ItemEvent.SELECTED){
-                    trayIcon.setToolTip("Sun TrayIcon");
-                } else {
-                    trayIcon.setToolTip(null);
-                }
-            }
-        });
-         */
+  
      
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

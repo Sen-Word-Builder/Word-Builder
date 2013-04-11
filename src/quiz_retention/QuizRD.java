@@ -313,10 +313,26 @@ time.start();
 
         String temp2;
         temp2 = "" + temp;
-        for (int i = 0; i < word.length() - 2; i++) {
+         if(word.length()==1)
+        {
+            temp2="*";
+            
+        }
+        if(word.length()==2)
+        {
+            temp2="**";
+            
+        }
+        else
+        {
+            for (int i = 0; i < word.length() - 2; i++) {
             temp2 += "*";
         }
-        temp2 += temp1;
+            temp2 += temp1;
+        }
+        
+        
+        
         hintanswer = temp2;
         this.hint.setText(hintanswer);
         current_word = word;
@@ -413,10 +429,26 @@ time.start();
 
         String temp2;
         temp2 = "" + temp;
-        for (int i = 0; i < word.length() - 2; i++) {
+          if(word.length()==1)
+        {
+            temp2="*";
+            
+        }
+        if(word.length()==2)
+        {
+            temp2="**";
+            
+        }
+        else
+        {
+            for (int i = 0; i < word.length() - 2; i++) {
             temp2 += "*";
         }
-        temp2 += temp1;
+            temp2 += temp1;
+        }
+        
+        
+        
         hintanswer = temp2;
         this.hint.setText(hintanswer);
         current_word = word;

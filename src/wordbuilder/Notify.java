@@ -105,22 +105,27 @@ public class Notify extends JFrame {
 
 
         if (Notify.getNotify()) {
-            //  System.out.println("I am here");
+              System.out.println("I am here");
 
             header ="<html><B>"+"   Hi </B> <I>"  + WordBuilder.getCurrentUser()+ "</I> </html>" ;
+            System.out.println(header);
             String empty = "  " ;
             if (!input.equals("")) {
                 message = input;
+                headingLabel.setText(header);
                 messageLabel.setText("<HTML>" + message);
                 messageLabel.setForeground(Color.WHITE);
             } else {
+                
                 message = "No Such Word Found";
+                headingLabel.setText(header);
                 messageLabel.setText("<HTML>" + message);
                 messageLabel.setForeground(Color.WHITE);
             }
-            headingLabel.setText(header);
+          //  headingLabel.setText(header);
             
             headingLabel.setForeground(Color.WHITE);
+            
 
             if (frame.isVisible() == false) {
                 frame.setVisible(true);

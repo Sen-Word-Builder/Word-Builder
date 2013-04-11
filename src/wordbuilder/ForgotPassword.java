@@ -193,12 +193,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         
       
         
-      /*
-        jLabel2.setVisible(true);
-        answer.setVisible(true);
-        jLabel3.setVisible(true);
-        questionlabel.setVisible(true);
-        * */
+     
     }//GEN-LAST:event_enterActionPerformed
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed

@@ -50,22 +50,7 @@ public class WordBuilder {
      //  props.setProperty("wordnet.database.dir", "wordnet/dict"); 
 
         System.setProperty("wordnet.database.dir","wordnet/dict");mainpage.setFont(font);
-       //System.setProperty("wordnet.database.dir", "C:/Program Files (x86)/WordNet/2.1/dict");
-   //     String a = System.getProperty("user.dir");
-     //   a+="/WordBuilder.jar/wordnet/dict/";
-      //  System.setProperty("wordnet.database.dir", a);
-
-        //ApiFetch.main(args);
-        //ApiFetch.getMeaning(" ","help","q");
-        //MainPage.main(args);
-        //ApiFetch.getHypernym("");
-        //ApiFetch.getHyponym("");
-        // MainPage.main(args);
-        // BaseIcon.set();
-       // PopUp.main(args);
-     //   Signup.main(args);
-      //  System.out.println(getCurrentUser());
-       // PopUp a =new PopUp();
+       
         
 
         
@@ -82,13 +67,7 @@ public class WordBuilder {
                 }
                         .start();
                 
-      //        quiz.setVisible(true);
-                
-        //Signin in = new Signin();
-        //in.setVisible(true);
-     //   ab = new MainPage();
-      // ab.setVisible(true);
-    //   bi = new BaseIcon();
+     
         Options op = new Options();
 
      
@@ -97,11 +76,7 @@ public class WordBuilder {
 
         WordBuilder.signin.setVisible(true);
     
-        
-      /*  QuizRD quiz=new QuizRD();
-
-      quiz.setVisible(true);
-      quiz.startQuiz(); */
+   
       
     }
     

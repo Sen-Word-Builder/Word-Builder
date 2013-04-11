@@ -152,6 +152,7 @@ public class ShowAnalysis extends javax.swing.JFrame {
         }
         jTextArea1.setText(str);
         jTextArea1.setCaretPosition(0);
+        jTextArea1.setEditable(false);
     }
     private Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
 }
