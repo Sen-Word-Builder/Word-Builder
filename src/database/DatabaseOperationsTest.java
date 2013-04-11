@@ -23,6 +23,7 @@ public class DatabaseOperationsTest {
         
         
         System.out.println(ApiFetch.getMeaning("trial0", "rain", "q"));
+        System.out.println(DatabaseOperations.getLastQuizData("vaibhav"));
         //start width test
         /*
         System.out.println(DatabaseOperations.getWordsWidth());

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.midi.Soundbank;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import wordbuilder.ApiFetch;
 import wordbuilder.WordBuilder;
@@ -22,42 +23,42 @@ import wordbuilder.WordBuilder;
  */
 public class QuizRD extends javax.swing.JFrame {
 
-    public static int max_size = 0;
-    public static int counter_depth = 0;
-    public static int size_depth;
-    public static int no_of_questions = 3;
-    public static int disp_depth;
-    public static int disp_retention;
-    public static int disp_width;
-    public static ArrayList<String> words_asked = new ArrayList<String>();
-    public static int score_retention;
-    public static int score_depth;
-    public static int score_width;
-    public static String current_quiz;
-    public static int quiz_score = 0;
-    public static String ques_meaning;
-    public static boolean last_answer = false;
-    public static int c = 0;
-    public static int c1 = 0;
-    public static int j_retention = 0;
-    public static int j_width = 0;
-    public static int j_depth = 0;
-    public static String hintanswer;
-    public static String current_word, current_answer;
-    public static ArrayList<String> words_retention_list = new ArrayList<String>();
-    public static ArrayList<String> words_width_list = new ArrayList<String>();
-    public static ArrayList<String> questions_asked = new ArrayList<String>();
-    public static ArrayList<String> answered = new ArrayList<String>();
-    public static ArrayList<String> answers = new ArrayList<String>();
+    public  int max_size = 0;
+    public  int counter_depth = 0;
+    public  int size_depth;
+    public  int no_of_questions = 10;
+    public  int disp_depth;
+    public  int disp_retention;
+    public  int disp_width;
+    public  ArrayList<String> words_asked = new ArrayList<String>();
+    public  int score_retention;
+    public  int score_depth;
+    public  int score_width;
+    public  String current_quiz;
+    public  int quiz_score = 0;
+    public  String ques_meaning;
+    public  boolean last_answer = false;
+    public  int c = 0;
+    public  int c1 = 0;
+    public  int j_retention = 0;
+    public  int j_width = 0;
+    public  int j_depth = 0;
+    public  String hintanswer;
+    public  String current_word, current_answer;
+    public  ArrayList<String> words_retention_list = new ArrayList<String>();
+    public  ArrayList<String> words_width_list = new ArrayList<String>();
+    public  ArrayList<String> questions_asked = new ArrayList<String>();
+    public  ArrayList<String> answered = new ArrayList<String>();
+    public  ArrayList<String> answers = new ArrayList<String>();
 
-    public static Timer time;
+    public  Timer time;
     
-    public static int time_remaining=180;
+    public  int time_remaining=900;
 
     private void finishQuiz() throws SQLException, ClassNotFoundException {
         System.out.println("we have finished quiz");
         time.stop();
-        DatabaseOperations.storeQuizData("vaibhav", score_retention, score_width, score_depth);
+        DatabaseOperations.storeQuizData(WordBuilder.getCurrentUser(), score_retention, score_width, score_depth);
         
         ShowAnalysis show=new ShowAnalysis(questions_asked, answers);
         
@@ -195,7 +196,7 @@ public class QuizRD extends javax.swing.JFrame {
     }
 
     public void startQuiz() throws SQLException, ClassNotFoundException {
-        int count = DatabaseOperations.showHistory("vaibhav").size();
+        int count = DatabaseOperations.showHistory(WordBuilder.getCurrentUser()).size();
 time=new Timer(1000,new TimerListener());
 time.start();
     
@@ -204,19 +205,15 @@ time.start();
         words_width_list = DatabaseOperations.getWordsWidth();
         disp_width = (DatabaseOperations.getWordsWidth().size() / 2) / no_of_questions;
 
-        userlabel.setText("hello " + "vaibhav");
-        if (count >= 5) {
-            this.current_quiz = "r";
-            words_retention_list = DatabaseOperations.getWordsRetention("vaibhav");
+        userlabel.setText("hello " + WordBuilder.getCurrentUser());
+        if (count >= 15) {
+            //this.current_quiz = "r";
+            words_retention_list = DatabaseOperations.getWordsRetention(WordBuilder.getCurrentUser());
             generateRetentionQuiz();
         } else {
-            score_retention = -1;
-            //     System.out.println("lets generate quiz");
-            c = 0;
-
-            generateWidthQuiz();
-
-            //timer
+            JOptionPane.showMessageDialog(this, "You have to search atleast 15 words to take the quiz", "Error", JOptionPane.ERROR_MESSAGE);
+        this.dispose();
+            WordBuilder.mainpage.setVisible(true);
         }
 
     }
@@ -258,9 +255,8 @@ time.start();
             }
             //    System.out.println(words_retention_list.get(c));
             word = words_retention_list.get(c);
-            //System.out.println("ques is "+ ApiFetch.getMeaning("vaibhav", list.get(c), "q"));
             // System.out.println("answer is ")+;
-            ques = ApiFetch.getMeaning("vaibhav", word, "q");
+            ques = ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q");
             this.question.setText(ques.get(0));
             this.question.setCaretPosition(0);
             questions_asked.add(ques.get(0));
@@ -356,9 +352,9 @@ time.start();
             }
       //      System.out.println(words_width_list.get(c));
             word = words_width_list.get(c);
-            //System.out.println("ques is "+ ApiFetch.getMeaning("vaibhav", list.get(c), "q"));
+            //System.out.println("ques is "+ ApiFetch.getMeaning(WordBuilder.getCurrentUser(), list.get(c), "q"));
             // System.out.println("answer is ")+;
-            ques = ApiFetch.getMeaning("vaibhav", word, "q");
+            ques = ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q");
             this.question.setText(ques.get(0));
             this.question.setCaretPosition(0);
             questions_asked.add(ques.get(0));
@@ -452,7 +448,7 @@ time.start();
          }
          System.out.println(words_width_list.get(c));
          word=words_width_list.get(c);
-         ques=ApiFetch.getMeaning("vaibhav", word, "q");
+         ques=ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q");
          this.question.append(ques.get(0));
          words_asked.add(words_width_list.get(c));
          answers.add(word);
@@ -500,7 +496,7 @@ time.start();
          if(j_depth<no_of_questions){
          if(counter_depth>0 && counter_depth<3 ){
          word=words_asked.get((words_asked.size()-counter_depth));
-         ques=ApiFetch.getMeaning("vaibhav", word,"q");
+         ques=ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word,"q");
          size_depth=ques.size()-2;
                 
          int j=2;
@@ -509,8 +505,8 @@ time.start();
          if(words_asked.contains(temp_word)) ;
          else break;
          }
-         this.question.append(ApiFetch.getMeaning("vaibhav", word, "q").get(0));
-         questions_asked.add(ApiFetch.getMeaning("vaibhav", word, "q").get(0));
+         this.question.append(ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").get(0));
+         questions_asked.add(ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").get(0));
          hint_word=""+temp_word.charAt(0);
          for (int k = 0; k < temp_word.length()-2; k++) {
          hint_word+="^";
@@ -532,7 +528,7 @@ time.start();
                     //else
                     word = DatabaseOperations.getRandomWordFromAll();
                     
-                    if( ApiFetch.getMeaning("vaibhav", word, "q").size()<3 );
+                    if( ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").size()<3 );
                     
                     if (words_asked.contains(word) ); 
                     else {
@@ -540,10 +536,10 @@ time.start();
                     }
                 }
                 System.out.println("word is "+word+" and counter depth is"+counter_depth);
-                this.question.setText(ApiFetch.getMeaning("vaibhav", word, "q").get(0));
+                this.question.setText(ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").get(0));
                 this.question.setCaretPosition(0);  //scroll up
-                System.out.println("question:"+ApiFetch.getMeaning("vaibhav", word, "q").get(0));
-                questions_asked.add(ApiFetch.getMeaning("vaibhav", word, "q").get(0));
+                System.out.println("question:"+ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").get(0));
+                questions_asked.add(ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").get(0));
                 words_asked.add(word);
                 answers.add(word);
                 current_word = word;
@@ -563,7 +559,7 @@ time.start();
                 word = words_asked.get((words_asked.size() - counter_depth));
                 
                 
-                ques = ApiFetch.getMeaning("vaibhav", word, "q");
+                ques = ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q");
                 //size_depth=ques.size()-1;
         //        System.out.println("word   sadfaldf "+word);
                 
@@ -578,9 +574,9 @@ time.start();
                         
           //      System.out.println("temp word"+temp_word);
                     
-                this.question.setText(ApiFetch.getMeaning("vaibhav", word, "q").get(0));
+                this.question.setText(ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").get(0));
                 this.question.setCaretPosition(0);  //scroll up
-                questions_asked.add(ApiFetch.getMeaning("vaibhav", word, "q").get(0));
+                questions_asked.add(ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").get(0));
                 words_asked.add(temp_word);
                 answers.add(temp_word);
                 current_word = temp_word;
@@ -648,7 +644,7 @@ time.start();
         jLabel7 = new javax.swing.JLabel();
         next = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quiz");
 
         quesno.setText("Q");

@@ -22,12 +22,12 @@ import static wordbuilder.Splash.loadingScreen;
  */
 public class WordBuilder {
 
-   
-    static Signin signin=new Signin();
-    static Signup signup=new Signup();
-    static ForgotPassword forgotpassword=new ForgotPassword();
-    static MainPage mainpage=new MainPage();
-    
+
+   public  static Signin signin=new Signin();
+   public  static Signup signup=new Signup();
+  public   static ForgotPassword forgotpassword=new ForgotPassword();
+   public  static MainPage mainpage=new MainPage();
+
 //    static Quiz quiz=new Quiz();
     /**
      * @param args the command line arguments
