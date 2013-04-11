@@ -69,10 +69,13 @@ public class WordBuilder {
 
   
         DatabaseOperations.init();
-        WordBuilder.signin.setVisible(true);
-     /* QuizRD quiz=new QuizRD();
+
+      //  WordBuilder.signin.setVisible(true);
+      
+        WordBuilder.setCurrentUser("vaibhav");
+        QuizRD quiz=new QuizRD();
       quiz.setVisible(true);
-      quiz.startQuiz(); */
+      quiz.startQuiz(); 
       
 
     }
