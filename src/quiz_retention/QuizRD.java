@@ -511,7 +511,7 @@ time.start();
         int i;
         String word;
         String temp_word = null;
-        String hint_word;
+        String hint_word="";
 
         /*
          if(j_depth<no_of_questions){
@@ -544,9 +544,9 @@ time.start();
       //      System.out.println("j depth "+ j_depth);
             if (counter_depth == 0) {
                 while (true) {
-                    if(j_depth==0)
-                  word="mat";
-                    else
+                    //if(j_depth==0)
+                  //word="go";
+                    //else
                     word = DatabaseOperations.getRandomWordFromAll();
                     
                     //if( ApiFetch.getMeaning(WordBuilder.getCurrentUser(), word, "q").size()<3 );
@@ -565,12 +565,20 @@ time.start();
                 answers.add(word);
                 current_word = word;
 
+                if(word.length()>2){
                 hint_word = "" + word.charAt(0);
                 for (int k = 0; k < word.length() - 2; k++) {
                     hint_word += "*";
                 }
                 hint_word += word.charAt(word.length() - 1);
-
+                }
+                else
+                {
+                    for (int j = 0; j < word.length(); j++) {
+                        hint_word+="*";
+                    }
+                }
+                
                 this.hint.setText(hint_word);
 
                                 
