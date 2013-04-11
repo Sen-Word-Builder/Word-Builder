@@ -16,12 +16,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import org.jfree.ui.RefineryUtilities;
+import quiz_retention.QuizRD;
 
 /**
  *
@@ -124,6 +128,25 @@ public class BaseIcon  {
             }
         });
          
+         takeQuiz.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+             
+                    QuizRD quiz=new QuizRD();
+      quiz.setVisible(true);
+      if(WordBuilder.mainpage!=null)
+          WordBuilder.mainpage.setVisible(false);
+        try {
+            quiz.startQuiz();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            }
+        });
+         
+     
          
         cb1.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {

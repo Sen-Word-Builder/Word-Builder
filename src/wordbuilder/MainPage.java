@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 import org.jfree.ui.RefineryUtilities;
+import quiz_retention.QuizRD;
 
 /**
  *
@@ -139,6 +140,11 @@ public class MainPage extends javax.swing.JFrame {
 
         jButton3.setText("Quiz");
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Analysis");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -425,6 +431,21 @@ public class MainPage extends javax.swing.JFrame {
     }
 }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        QuizRD quiz=new QuizRD();
+      quiz.setVisible(true);
+        try {
+            if(WordBuilder.mainpage!=null)
+                WordBuilder.mainpage.setVisible(false);
+            quiz.startQuiz();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      *

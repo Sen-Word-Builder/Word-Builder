@@ -7,6 +7,8 @@ package wordbuilder;
 import database.DatabaseOperations;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Signup extends javax.swing.JFrame {
 
+    WindowAdapter windowadapter;
     /**
      * Creates new form Signup
      */
@@ -25,6 +28,20 @@ public class Signup extends javax.swing.JFrame {
 
         initComponents();
          this.setLocation(scrSize.width - (scrSize.width)/2 - (this.getWidth())/2 ,scrSize.height -(scrSize.height*1)/2 - (this.getHeight())/2  );
+          windowadapter = new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent we)
+            {
+                
+                
+                BackGround.exitBG();
+                System.exit(0);
+                //System.exit(0);
+            }
+        };
+     
+     
+     addWindowListener(windowadapter);
     }
 
     /**

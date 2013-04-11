@@ -70,12 +70,12 @@ public class WordBuilder {
   
         DatabaseOperations.init();
 
-      //  WordBuilder.signin.setVisible(true);
+        WordBuilder.signin.setVisible(true);
       
-        WordBuilder.setCurrentUser("vaibhav");
-        QuizRD quiz=new QuizRD();
+        
+      /*  QuizRD quiz=new QuizRD();
       quiz.setVisible(true);
-      quiz.startQuiz(); 
+      quiz.startQuiz(); */
       
 
     }
